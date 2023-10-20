@@ -13,13 +13,16 @@ const routes: Routes = [
 
   {
     path: 'home',
-    component: HomeComponent
+    component:
+      HomeComponent
   },
 
   {
     path: 'telaCadastro',
-    component: TelaCadastroComponent
+    component:
+      TelaCadastroComponent
   }
+
 ];
 
 @NgModule({
