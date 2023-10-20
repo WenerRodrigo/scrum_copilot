@@ -1,0 +1,13 @@
+.container {
+    background-color: #fff;
+    padding: 10px;
+    margin: 30px;
+    height: 150px;
+    border-top: 1px solid #ccc;
+}
+
+p {
+    text-align: center;
+    justify-content: center;
+    color: #887f7f;
+}
