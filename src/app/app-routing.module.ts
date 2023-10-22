@@ -21,8 +21,7 @@ const routes: Routes = [
     path: 'telaCadastro',
     component:
       TelaCadastroComponent
-  }
-
+  },
 ];
 
 @NgModule({

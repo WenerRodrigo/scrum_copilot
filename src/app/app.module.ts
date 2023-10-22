@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/screens/home/home.component';
 import { TelaCadastroComponent } from './components/screens/tela-cadastro/tela-cadastro.component';
-import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     HomeComponent,
     TelaCadastroComponent,
-    CabecalhoComponent
   ],
   imports: [
     BrowserModule,
