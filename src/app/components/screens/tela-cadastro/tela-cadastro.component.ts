@@ -12,4 +12,8 @@ export class TelaCadastroComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  singIn() {
+    alert("Cadastro realizado com sucesso!");
+  }
+
 }
