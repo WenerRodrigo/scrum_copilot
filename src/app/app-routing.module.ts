@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/screens/home/home.component';
 import { TelaCadastroComponent } from './components/screens/tela-cadastro/tela-cadastro.component';
+import { TelaPrincipalComponent } from './components/sreens/tela-principal/tela-principal.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,11 @@ const routes: Routes = [
     path: 'home',
     component:
       HomeComponent
+  },
+
+  {
+    path: 'telaPrincipal',
+    component: TelaPrincipalComponent
   },
 
   {

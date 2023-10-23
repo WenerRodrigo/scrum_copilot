@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/screens/home/home.component';
 import { TelaCadastroComponent } from './components/screens/tela-cadastro/tela-cadastro.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TelaPrincipalComponent } from './components/sreens/tela-principal/tela-principal.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +15,15 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     HomeComponent,
     TelaCadastroComponent,
+    TelaPrincipalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
