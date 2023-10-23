@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  password: string = '';
+  visible: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  viewPassword() {
+    this.visible = !this.visible;
   }
 
   singnIn() {
