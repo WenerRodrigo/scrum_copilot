@@ -3,19 +3,30 @@
     <form class="form" action="">
         <div class="box">
             <label>Nome</label>
-            <input type="name">
+            <input type="name" placeholder="Digite seu nome ">
         </div>
         <div class="box">
             <label>Email</label>
-            <input type="email">
+            <input type="email" placeholder="Digite seu e-mail">
         </div>
         <div class="box">
             <label>Senha</label>
-            <input type="password">
+            <input type="{{ visible ? 'text' : 'password' }}" [(ngModel)]="password" placeholder="Digite sua senha">
+            <span (click)="viewPassword()"
+                [ngClass]="visible ? 'material-symbols-outlined' : 'material-symbols-outlined' ">
+                {{ visible ? 'visibility' : 'visibility_off' }}
+            </span>
+        </div>
+        <div>
+
         </div>
         <div class="box">
             <label>Confirmação de senha</label>
-            <input type="password">
+            <input type="{{ closeVisible ? 'text' : 'password' }}" placeholder="Confirme sua senha" type="password">
+            <span (click)="closePassword()"
+                [ngClass]="closeVisible ? 'material-symbols-outlined' : 'material-symbols-outlined'">
+                {{ closeVisible ? 'visibility' : 'visibility_off' }}
+            </span>
         </div>
         <div class="box-button">
             <button class="button" type="submit" (click)="singIn()" routerLink="/home">Cadastrar</button>

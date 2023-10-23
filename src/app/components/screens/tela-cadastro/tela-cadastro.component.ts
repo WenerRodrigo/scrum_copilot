@@ -7,6 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TelaCadastroComponent implements OnInit {
 
+  password: string = '';
+  visible: boolean = false;
+  closeVisible: boolean = false;
+
+  viewPassword() {
+    this.visible = !this.visible;
+  }
+
+  closePassword() {
+    this.closeVisible = !this.closeVisible;
+  }
+
+  togglePasswordVisibility() {
+    this.visible = !this.visible;
+  }
+
   constructor() { }
 
   ngOnInit(): void {
