@@ -52,7 +52,7 @@ export class TelaCadastroComponent implements OnInit {
       headers: myHeaders,
       body: raw,
       redirect: 'follow'
-    })
+    }) 
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
