@@ -1,3 +1,30 @@
+.box_button {
+    display: flex;
+    justify-content: right;
+    padding: 20px;
+}
+
+
+.button_logout {
+    display: flex;
+    align-items: center;
+    background-color: #E74C3C; 
+    color: #FFF; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button_logout i {
+    margin-right: 10px; 
+    font-size: 24px; 
+}
+
+.button_logout:hover {
+    background-color: #C0392B; 
+}
 .container {
     border: 1px solid #ccc;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);

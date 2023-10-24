@@ -22,7 +22,7 @@
         </div>
         <div class="box">
             <label>Confirmação de senha</label>
-            <input type="{{ closeVisible ? 'text' : 'password' }}" placeholder="Confirme sua senha" type="password">
+            <input id="inputConfirmPassword" type="{{ closeVisible ? 'text' : 'password' }}" placeholder="Confirme sua senha" type="password">
             <span (click)="closePassword()"
                 [ngClass]="closeVisible ? 'material-symbols-outlined' : 'material-symbols-outlined'">
                 {{ closeVisible ? 'visibility' : 'visibility_off' }}

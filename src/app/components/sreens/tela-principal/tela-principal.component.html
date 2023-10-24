@@ -1,35 +1,42 @@
-<div class="container">
-    <h2 class="title">Metas</h2>
-    <form [formGroup]="meuFormulario" (ngSubmit)="submitForm()">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="meta">Meta:</label>
-                <input type="text" id="meta" formControlName="meta">
+<header>
+    <div class="box_button" routerLink="/home">
+        <button class="button_logout">
+            <i class="material-symbols-outlined">logout</i> Sair
+        </button>
+    </div>
+    <div class="container">
+        <h2 class="title">Metas</h2>
+        <form [formGroup]="meuFormulario" (ngSubmit)="submitForm()">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="meta">Meta:</label>
+                    <input type="text" id="meta" formControlName="meta">
+                </div>
+                <div class="form-group">
+                    <label for="nomeMeta">Nome da Sprint:</label>
+                    <input type="text" id="nomeMeta" formControlName="nomeMeta">
+                </div>
+                <div class="form-group">
+                    <label for="dataInicio">Data Início:</label>
+                    <input type="date" id="dataInicio" formControlName="dataInicio">
+                </div>
+                <div class="form-group">
+                    <label for="dataFim">Data Fim:</label>
+                    <input type="date" id="dataFim" formControlName="dataFim">
+                </div>
+                <div class="form-group">
+                    <label for="progresso">Progresso (%):</label>
+                    <input type="number" id="progresso" formControlName="progresso">
+                </div>
+                <div class="form-group">
+                    <label for="id">Id:</label>
+                    <input type="text" id="id" formControlName="id">
+                </div>
+                <button class="button-form" type="submit">Adicionar</button>
             </div>
-            <div class="form-group">
-                <label for="nomeMeta">Nome da Sprint:</label>
-                <input type="text" id="nomeMeta" formControlName="nomeMeta">
-            </div>
-            <div class="form-group">
-                <label for="dataInicio">Data Início:</label>
-                <input type="date" id="dataInicio" formControlName="dataInicio">
-            </div>
-            <div class="form-group">
-                <label for="dataFim">Data Fim:</label>
-                <input type="date" id="dataFim" formControlName="dataFim">
-            </div>
-            <div class="form-group">
-                <label for="progresso">Progresso (%):</label>
-                <input type="number" id="progresso" formControlName="progresso">
-            </div>
-            <div class="form-group">
-                <label for="id">Id:</label>
-                <input type="text" id="id" formControlName="id">
-            </div>
-            <button class="button-form" type="submit">Adicionar</button>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
+</header>
 
 <table class="metas-table">
     <thead>
