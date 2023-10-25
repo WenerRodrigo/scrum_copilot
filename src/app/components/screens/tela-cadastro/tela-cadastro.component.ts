@@ -1,5 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-tela-cadastro',
@@ -8,9 +14,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TelaCadastroComponent implements OnInit {
 
+    userData: {
+    email: string,
+    nome_completo: string,
+    senha: string,
+    data_inclusao: string
+  } = {
+      email: '',
+      nome_completo: '',
+      senha: '',
+      data_inclusao: ''
+    }
+
   password: string = '';
   visible: boolean = false;
   closeVisible: boolean = false;
+  loginForm!: FormGroup
 
   viewPassword() {
     this.visible = !this.visible;
@@ -24,15 +43,24 @@ export class TelaCadastroComponent implements OnInit {
     this.visible = !this.visible;
   }
 
-  constructor() { }
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    console.log("this.password")
-    console.log(this.password)
-    // this.singIn(this.password)
+    if (this.userData.email && this.userData.senha) {
+      this.authService.singUp(this.userData).subscribe(
+        (response: any) => {
+          console.log('Cadastro realizado com sucesso');
+        },
+        (error: any) => {
+          console.error('Erro ao cadastrar:', error);
+        }
+      );
+    } else {
+      console.error('Preencha os campos obrigatórios.');
+    }
   }
 
   singIn() {
@@ -52,7 +80,7 @@ export class TelaCadastroComponent implements OnInit {
       headers: myHeaders,
       body: raw,
       redirect: 'follow'
-    }) 
+    })
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
