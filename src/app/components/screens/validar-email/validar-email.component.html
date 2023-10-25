@@ -1,0 +1,13 @@
+<div class="container">
+    <h2 class="title">Validar Email</h2>
+    <form class="form" #emailForm="ngForm">
+        <div class="box" [ngClass]="{'error': inputInvalid}">
+            <label>Email</label>
+            <input type="email" id="email" name="email" [(ngModel)]="email" required placeholder="Digite seu e-mail">
+        </div>
+        <div class="box-button">
+            <button class="button" type="submit" [disabled]="!emailForm.form.valid" routerLink="/validarToken"
+                (click)="enviarEmail()">Enviar</button>
+        </div>
+    </form>
+</div>
