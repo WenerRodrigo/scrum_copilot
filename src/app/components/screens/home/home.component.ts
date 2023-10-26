@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -16,11 +16,16 @@ export class HomeComponent implements OnInit {
   constructor(private auth: AuthService, private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', Validators.required]
+      senha: ['', [Validators.required, this.ngModelValidator]]
     })
   }
 
   ngOnInit(): void {
+  }
+
+  ngModelValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const hasNgModel = control.value && control.value.includes('[(ngModel)]');
+    return hasNgModel ? { ngModelError: true } : null;
   }
 
   onLogin() {
