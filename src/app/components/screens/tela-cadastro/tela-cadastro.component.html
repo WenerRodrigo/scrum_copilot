@@ -1,6 +1,6 @@
 <div class="container">
     <h2 class="title">Cadastre-se</h2>
-    <form class="form" action="">
+    <form class="form">
         <div class="box">
             <label>Nome</label>
             <input type="name" placeholder="Digite seu nome ">
@@ -11,7 +11,7 @@
         </div>
         <div class="box">
             <label>Senha</label>
-            <input type="{{ visible ? 'text' : 'password' }}" [(ngModel)]="password" placeholder="Digite sua senha">
+            <input type="{{ visible ? 'text' : 'password' }}" placeholder="Digite sua senha">
             <span (click)="viewPassword()"
                 [ngClass]="visible ? 'material-symbols-outlined' : 'material-symbols-outlined' ">
                 {{ visible ? 'visibility' : 'visibility_off' }}

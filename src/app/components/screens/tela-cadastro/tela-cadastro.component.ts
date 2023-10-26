@@ -43,14 +43,14 @@ export class TelaCadastroComponent implements OnInit {
     this.visible = !this.visible;
   }
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService , private httpClient: HttpClient) {}
 
   ngOnInit(): void {
   }
 
   onSubmit() {
     if (this.userData.email && this.userData.senha) {
-      this.authService.singUp(this.userData).subscribe(
+      this.authService.singIn(this.userData).subscribe(
         (response: any) => {
           console.log('Cadastro realizado com sucesso');
         },
@@ -79,7 +79,8 @@ export class TelaCadastroComponent implements OnInit {
       method: 'POST',
       headers: myHeaders,
       body: raw,
-      redirect: 'follow'
+      redirect: 'follow',
+      mode: "no-cors"
     })
       .then(response => response.text())
       .then(result => console.log(result))
