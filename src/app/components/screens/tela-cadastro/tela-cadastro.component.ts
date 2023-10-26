@@ -50,7 +50,7 @@ export class TelaCadastroComponent implements OnInit {
 
   onSubmit() {
     if (this.userData.email && this.userData.senha) {
-      this.authService.singIn(this.userData).subscribe(
+      this.authService.signUp(this.userData).subscribe(
         (response: any) => {
           console.log('Cadastro realizado com sucesso');
         },

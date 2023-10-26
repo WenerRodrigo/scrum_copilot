@@ -53,7 +53,7 @@ export class ResetSenhaComponent implements OnInit {
   }
 
   singIn() {
-    this.authService.singIn(this.password).subscribe(
+    this.authService.signUp(this.password).subscribe(
       (response: any) => {
         console.log('Cadastro realizado com sucesso');
       },

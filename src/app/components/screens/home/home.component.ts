@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +14,11 @@ export class HomeComponent implements OnInit {
   visible: boolean = false;
   loginForm!: FormGroup;
 
-  constructor(private auth: AuthService, private formBuilder: FormBuilder) {
+  constructor(private auth: AuthService, private formBuilder: FormBuilder, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, this.ngModelValidator]]
+      // pass: this.password
     })
   }
 
@@ -32,14 +34,21 @@ export class HomeComponent implements OnInit {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe({
         next: (response) => {
-          console.log(response);
+          if(response.response == 200){
+            console.log(response);
+            this.router.navigateByUrl("/telaPrincipal")
+          }
+          else{
+            alert(response.mensagem)
+            console.log(response)
+          }
         },
         error: (error) => {
           console.log(error);
         }
       });
     } else {
-      console.error('Preencha os campos obrigatórios.');
+      alert('Preencha os campos obrigatórios.');
     }
   }
 

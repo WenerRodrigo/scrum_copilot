@@ -6,27 +6,27 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  private baseUrl: string = "https://localhost:8000/api/usuarios/";
+  private baseUrl: string = "https://localhost:8000/api/";
   constructor(private http: HttpClient) { }
 
   login(loginObj:any) {
-    return this.http.post<any>(`${this.baseUrl}authentication`, loginObj);
+    return this.http.post<any>(`${this.baseUrl}usuarios/authentication`, loginObj);
   }
 
-  singIn(signUpObj:any) {
-    return this.http.post<any>(`${this.baseUrl}gerarusuario`, signUpObj);
+  signUp(signUpObj:any) {
+    return this.http.post<any>(`${this.baseUrl}usuarios/gerarusuario`, signUpObj);
   }
 
   recuperarEmail(emailObj:any) {
-    return this.http.post<any>(`${this.baseUrl}recuperarsenha_email`, emailObj);
+    return this.http.post<any>(`${this.baseUrl}usuarios/recuperarsenha_email`, emailObj);
   }
 
   validToken(tokenObj:any) {
-    return this.http.post<any>(`${this.baseUrl}token`, tokenObj);
+    return this.http.post<any>(`${this.baseUrl}usuarios/token`, tokenObj);
   }
 
   resetSenha(resetSenhaObj:any) {
-    return this.http.post<any>(`${this.baseUrl}novasenha`, resetSenhaObj);
+    return this.http.post<any>(`${this.baseUrl}usuarios/novasenha`, resetSenhaObj);
   }
 
 }
