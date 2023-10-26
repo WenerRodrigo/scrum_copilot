@@ -7,7 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/screens/home/home.component';
 import { TelaCadastroComponent } from './components/screens/tela-cadastro/tela-cadastro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TelaPrincipalComponent } from './components/sreens/tela-principal/tela-principal.component';
+import { TelaPrincipalComponent } from './components/screens/tela-principal/tela-principal.component';
 import { ResetSenhaComponent } from './components/screens/reset-senha/reset-senha.component';
 import { ValidarEmailComponent } from './components/screens/validar-email/validar-email.component';
 import { ValidarTokenComponent } from './components/screens/validar-token/validar-token.component';
