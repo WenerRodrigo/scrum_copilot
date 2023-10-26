@@ -1,13 +1,13 @@
 <div class="container">
     <h2 class="title">Resetar Senha</h2>
-    <form class="form" action="">
+    <form class="form" [formGroup]="resetSenhaForm" (ngSubmit)="onSubmit">
         <div class="box">
             <label>Email</label>
-            <input type="email" placeholder="Digite seu e-mail">
+            <input type="email" formControlName="email" placeholder="Digite seu e-mail">
         </div>
         <div class="box">
             <label>Nova senha</label>
-            <input type="{{ visible ? 'text' : 'password' }}" [(ngModel)]="password" placeholder="Digite sua senha">
+            <input type="{{ visible ? 'text' : 'password' }}" formControlName="password" placeholder="Digite sua senha">
             <span (click)="viewPassword()"
                 [ngClass]="visible ? 'material-symbols-outlined' : 'material-symbols-outlined' ">
                 {{ visible ? 'visibility' : 'visibility_off' }}
@@ -18,7 +18,7 @@
         </div>
         <div class="box">
             <label>Confirme a senha</label>
-            <input id="inputConfirmPassword" type="{{ closeVisible ? 'text' : 'password' }}"
+            <input type="{{ closeVisible ? 'text' : 'password' }}" formControlName="password"
                 placeholder="Confirme sua senha" type="password">
             <span (click)="closePassword()"
                 [ngClass]="closeVisible ? 'material-symbols-outlined' : 'material-symbols-outlined'">

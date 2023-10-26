@@ -1,5 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,11 @@ export class ResetSenhaComponent implements OnInit {
   closeVisible: boolean = false;
   resetSenhaForm: FormGroup;
 
-  constructor() {
-    this.resetSenhaForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)])
+  constructor(private authService: AuthService, private formBuilder: FormBuilder) {
+    this.resetSenhaForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
 
     })
 
@@ -29,7 +30,10 @@ export class ResetSenhaComponent implements OnInit {
 
   onSubmit() {
     if (this.resetSenhaForm.valid) {
-      console.log("Senha válida: " + this.resetSenhaForm.value.password)
+      const email = this.resetSenhaForm.get('email')?.value;
+      const password = this.resetSenhaForm.get('password')?.value;
+    } else {
+      console.log("Senha inválida: " + this.resetSenhaForm.value.password)
     }
     console.log("this.password")
     console.log(this.password)
@@ -49,26 +53,14 @@ export class ResetSenhaComponent implements OnInit {
   }
 
   singIn() {
-    var myHeaders = new Headers();
-    myHeaders.append("Accept", "application/json");
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({
-      "email": "jao_vitor-sousa@hotmail.com",
-      // "nome_completo": "João Vitor",
-      "senha": "654321",
-      // "data_inclusao": "2023-10-22T17:49:30.159Z"
-    });
-
-    fetch("https://localhost:8000/api/usuarios/authentication", {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    })
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+    this.authService.singIn(this.password).subscribe(
+      (response: any) => {
+        console.log('Cadastro realizado com sucesso');
+      },
+      (error: any) => {
+        console.error('Erro ao cadastrar:', error);
+      }
+    );
   }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,14 +11,17 @@ export class ValidarEmailComponent implements OnInit {
   email: string = "";
   inputInvalid: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private elementRef: ElementRef) { }
 
   ngOnInit(): void {
   }
 
   enviarEmail() {
-    if (this.email === '') {
+    if (this.email === '' || !this.validarEmail(this.email)) {
       this.inputInvalid = true;
+      this.email = '';
+      this.setFocusOnEmailField();
+      alert('Email inválido!');
       return;
     }
 
@@ -34,5 +37,16 @@ export class ValidarEmailComponent implements OnInit {
         console.error('Erro ao enviar o email:', error);
       }
     );
+  }
+
+  validarEmail(email: string): boolean {
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    return emailPattern.test(email);
+  }
+
+  setFocusOnEmailField() {
+    setTimeout(() => {
+      this.elementRef.nativeElement.querySelector('#email').focus();
+    }, 0);
   }
 }

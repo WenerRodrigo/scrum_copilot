@@ -6,7 +6,7 @@
             <input type="email" id="email" name="email" [(ngModel)]="email" required placeholder="Digite seu e-mail">
         </div>
         <div class="box-button">
-            <button class="button" type="submit" [disabled]="!emailForm.form.valid" routerLink="/validarToken"
+            <button class="button" type="submit" [disabled]="inputInvalid" routerLink="/validarToken"
                 (click)="enviarEmail()">Enviar</button>
         </div>
     </form>
