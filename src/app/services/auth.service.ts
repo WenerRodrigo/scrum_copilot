@@ -13,7 +13,7 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}authentication`, loginObj);
   }
 
-  singUp(signUpObj:any) {
+  singIn(signUpObj:any) {
     return this.http.post<any>(`${this.baseUrl}gerarusuario`, signUpObj);
   }
 
