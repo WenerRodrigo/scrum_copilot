@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EndPointService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,22 +15,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TelaCadastroComponent implements OnInit {
 
-    userData: {
-    email: string,
-    nome_completo: string,
-    senha: string,
-    data_inclusao: string
-  } = {
-      email: '',
-      nome_completo: '',
-      senha: '',
-      data_inclusao: ''
-    }
-
-  password: string = '';
   visible: boolean = false;
   closeVisible: boolean = false;
-  loginForm!: FormGroup
+  createForm!: FormGroup
 
   viewPassword() {
     this.visible = !this.visible;
@@ -43,47 +31,45 @@ export class TelaCadastroComponent implements OnInit {
     this.visible = !this.visible;
   }
 
-  constructor(private authService: AuthService , private httpClient: HttpClient) {}
+  constructor(private authService: EndPointService, private formBuilder: FormBuilder , private httpClient: HttpClient, private router: Router) {
+    this.createForm = this.formBuilder.group({
+      email: ['', [Validators.required]],
+      senha: ['', [Validators.required]],
+      nome_completo: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]]
+    })
+  }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    if (this.userData.email && this.userData.senha) {
-      this.authService.signUp(this.userData).subscribe(
-        (response: any) => {
-          console.log('Cadastro realizado com sucesso');
-        },
-        (error: any) => {
-          console.error('Erro ao cadastrar:', error);
+  onCreate() {
+    console.log(this.createForm.value)
+    if (this.createForm.valid) {
+      if(this.createForm.value.senha === this.createForm.value.confirmPassword){
+        console.log('Entrou')
+        this.authService.signUp({senha: this.createForm.value.senha, email: this.createForm.value.email, nome_completo: this.createForm.value.nome_completo}).subscribe({
+          next: (response) => {
+            if(response.response === 200){
+              console.log('Cadastro realizado com sucesso');
+              this.router.navigateByUrl("/home")
+            }
+            else{
+              console.log(response)
+              alert(response.mensagem)
+            }
+          },
+          error: (error) => {
+            console.error('Erro ao cadastrar:', error);
+          }
         }
-      );
+        );
+      }
+      else{
+        alert('As senhas digitadas não são iguais')
+      }
     } else {
-      console.error('Preencha os campos obrigatórios.');
+      alert('Preencha os campos obrigatórios.');
     }
-  }
-
-  singIn() {
-    var myHeaders = new Headers();
-    myHeaders.append("Accept", "application/json");
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({
-      "email": "jao_vitor-sousa@hotmail.com",
-      // "nome_completo": "João Vitor",
-      "senha": "654321",
-      // "data_inclusao": "2023-10-22T17:49:30.159Z"
-    });
-
-    fetch("https://localhost:8000/api/usuarios/authentication", {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow',
-      mode: "no-cors"
-    })
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
   }
 }

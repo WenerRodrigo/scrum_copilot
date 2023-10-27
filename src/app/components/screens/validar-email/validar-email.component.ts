@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { EndPointService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-validar-email',
@@ -11,7 +11,7 @@ export class ValidarEmailComponent implements OnInit {
   email: string = "";
   inputInvalid: boolean = false;
 
-  constructor(private authService: AuthService, private elementRef: ElementRef) { }
+  constructor(private authService: EndPointService, private elementRef: ElementRef) { }
 
   ngOnInit(): void {
   }

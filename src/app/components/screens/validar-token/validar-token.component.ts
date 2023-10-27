@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { EndPointService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-validar-token',
@@ -11,7 +11,7 @@ export class ValidarTokenComponent implements OnInit {
   token: string = "";
   tokenValido: boolean = true;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: EndPointService) { }
 
   ngOnInit(): void {
   }

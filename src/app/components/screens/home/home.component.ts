@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { EndPointService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   visible: boolean = false;
   loginForm!: FormGroup;
 
-  constructor(private auth: AuthService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private auth: EndPointService, private formBuilder: FormBuilder, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, this.ngModelValidator]]
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe({
         next: (response) => {
-          if(response.response == 200){
+          if(response.response === 200){
             console.log(response);
             this.router.navigateByUrl("/telaPrincipal")
           }

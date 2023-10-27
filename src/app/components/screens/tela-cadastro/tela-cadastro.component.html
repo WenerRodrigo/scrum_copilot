@@ -1,17 +1,17 @@
 <div class="container">
     <h2 class="title">Cadastre-se</h2>
-    <form class="form">
+    <form class="form" [formGroup]="createForm" ng>
         <div class="box">
             <label>Nome</label>
-            <input type="name" placeholder="Digite seu nome ">
+            <input type="name" formControlName="nome_completo" placeholder="Digite seu nome ">
         </div>
         <div class="box">
             <label>Email</label>
-            <input type="email" placeholder="Digite seu e-mail">
+            <input type="email" formControlName="email" placeholder="Digite seu e-mail" email>
         </div>
         <div class="box">
             <label>Senha</label>
-            <input type="{{ visible ? 'text' : 'password' }}" placeholder="Digite sua senha">
+            <input type="{{ visible ? 'text' : 'password' }}" formControlName="senha" placeholder="Digite sua senha">
             <span (click)="viewPassword()"
                 [ngClass]="visible ? 'material-symbols-outlined' : 'material-symbols-outlined' ">
                 {{ visible ? 'visibility' : 'visibility_off' }}
@@ -22,14 +22,14 @@
         </div>
         <div class="box">
             <label>Confirmação de senha</label>
-            <input id="inputConfirmPassword" type="{{ closeVisible ? 'text' : 'password' }}" placeholder="Confirme sua senha" type="password">
+            <input id="inputConfirmPassword" type="{{ closeVisible ? 'text' : 'password' }}" formControlName="confirmPassword" placeholder="Confirme sua senha" type="password">
             <span (click)="closePassword()"
                 [ngClass]="closeVisible ? 'material-symbols-outlined' : 'material-symbols-outlined'">
                 {{ closeVisible ? 'visibility' : 'visibility_off' }}
             </span>
         </div>
         <div class="box-button">
-            <button class="button" type="submit" (click)="singIn()" routerLink="/home">Cadastrar</button>
+            <button class="button" (click)="onCreate()" type="submit">Cadastrar</button>
         </div>
     </form>
 </div>
