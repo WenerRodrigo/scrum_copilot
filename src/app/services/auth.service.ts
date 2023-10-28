@@ -20,6 +20,7 @@ export class EndPointService {
   }
 
   recuperarEmail(emailObj:any) {
+    console.log(emailObj)
     return this.http.post<any>(`${this.baseUrl}usuarios/recuperarsenha_email`, emailObj);
   }
 

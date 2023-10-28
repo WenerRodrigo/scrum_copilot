@@ -17,31 +17,26 @@ export class ValidarTokenComponent implements OnInit {
   }
 
   validarToken() {
-    if (this.token === '') {
-      this.tokenValido = false;
-      return;
-    }
-
-    const tokenObj = {
-      token: this.token
-    };
-
-    this.authService.validToken(tokenObj).subscribe(
-      (response: any) => {
-        if (response.tokenValido) {
+    this.authService.validToken({ token: this.token }).subscribe({
+      next: (response) => {
+        if (response.response === 200) {
+          console.log('Token válido');
           this.tokenValido = true;
-          alert('Token válido! Redirecionando para redefinir a senha.');
-        } else {
+          this.signIn()
+        }
+        else {
+          console.log(response)
+          alert(response.mensagem)
           this.tokenValido = false;
-          alert('Token inválido. Tente novamente.');
         }
       },
-      (error: any) => {
-        this.tokenValido = false;
-        console.error('Erro ao validar o token:', error);
+      error: (error) => {
+        console.log("Erro na solicitação HTTP:", error)
       }
-    );
+    })
   }
+
+
   signIn() {
     alert("Token enviado com sucesso!")
   }

@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EndPointService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,43 +12,48 @@ export class ValidarEmailComponent implements OnInit {
 
   email: string = "";
   inputInvalid: boolean = false;
+  validEmailForm!: FormGroup;
 
-  constructor(private authService: EndPointService, private elementRef: ElementRef) { }
+  constructor(private authService: EndPointService, private elementRef: ElementRef, private formBuilder: FormBuilder, private router: Router) {
+    this.validEmailForm = this.formBuilder.group({
+      email: ['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
   }
 
   enviarEmail() {
-    if (this.email === '' || !this.validarEmail(this.email)) {
+    console.log(this.validEmailForm.value.email)
+    if (this.validEmailForm.valid) {
+      this.authService.recuperarEmail({ email: this.validEmailForm.value.email }).subscribe({
+        next: (response) => {
+          if (response.response === 200) {
+            console.log('Email enviado com sucesso');
+            this.router.navigateByUrl("/home")
+          }
+          else {
+            console.log(response)
+            alert(response.mensagem)
+          }
+        },
+        error: (error) => {
+          console.log("Erro na solicitação HTTP:", error)
+        }
+      })
+    } else {
       this.inputInvalid = true;
-      this.email = '';
-      this.setFocusOnEmailField();
-      alert('Email inválido!');
-      return;
     }
-
-    const emailObj = {
-      email: this.email
-    };
-
-    this.authService.recuperarEmail(emailObj).subscribe(
-      (response: any) => {
-        alert('Email enviado com sucesso!');
-      },
-      (error: any) => {
-        console.error('Erro ao enviar o email:', error);
-      }
-    );
   }
 
-  validarEmail(email: string): boolean {
-    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-    return emailPattern.test(email);
-  }
+  //validarEmail(email: string): boolean {
+  // const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+  //return emailPattern.test(email);
+  //}
 
-  setFocusOnEmailField() {
-    setTimeout(() => {
-      this.elementRef.nativeElement.querySelector('#email').focus();
-    }, 0);
-  }
+  //setFocusOnEmailField() {
+  //setTimeout(() => {
+  // this.elementRef.nativeElement.querySelector('#email').focus();
+  //}, 0);
+  //}
 }

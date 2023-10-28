@@ -1,12 +1,12 @@
 <div class="container">
     <h2 class="title">Validar Email</h2>
-    <form class="form" #emailForm="ngForm">
+    <form class="form" [formGroup]="validEmailForm" #emailForm="ngForm">
         <div class="box" [ngClass]="{'error': inputInvalid}">
             <label>Email</label>
-            <input type="email" id="email" name="email" [(ngModel)]="email" required placeholder="Digite seu e-mail">
+            <input type="email" id="email" name="email" formControlName="email" required placeholder="Digite seu e-mail">
         </div>
         <div class="box-button">
-            <button class="button" type="submit" [disabled]="inputInvalid" routerLink="/validarToken"
+            <button class="button" type="submit" [disabled]="inputInvalid"
                 (click)="enviarEmail()">Enviar</button>
         </div>
     </form>
