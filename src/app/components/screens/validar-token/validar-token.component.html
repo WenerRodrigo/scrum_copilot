@@ -1,12 +1,12 @@
 <div class="container">
     <h2 class="title">Validar Token</h2>
-    <form class="form" action="">
+    <form class="form" [formGroup]="tokenForm">
         <div class="box">
             <label>Token</label>
             <input type="text" placeholder="Digite o token">
         </div>
         <div class="box-button">
-            <button class="button" type="submit" (click)="validarToken()" routerLink="/resetSenha">Enviar</button>
+            <button class="button" type="submit" (click)="validarToken()">Enviar</button>
         </div>
     </form>
 </div>

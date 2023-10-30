@@ -24,9 +24,9 @@ export class ValidarEmailComponent implements OnInit {
   }
 
   enviarEmail() {
-    console.log(this.validEmailForm.value.email)
+    console.log(this.validEmailForm.value)
     if (this.validEmailForm.valid) {
-      this.authService.recuperarEmail({ email: this.validEmailForm.value.email }).subscribe({
+      this.authService.recuperarEmail(this.validEmailForm.value.email).subscribe({
         next: (response) => {
           if (response.response === 200) {
             console.log('Email enviado com sucesso');
@@ -38,12 +38,15 @@ export class ValidarEmailComponent implements OnInit {
           }
         },
         error: (error) => {
-          console.log("Erro na solicitação HTTP:", error)
+          console.log(error)
+          alert('Erro ao enviar email')
         }
       })
-    } else {
+    }
+    else {
       this.inputInvalid = true;
     }
+    
   }
 
   //validarEmail(email: string): boolean {

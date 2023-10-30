@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EndPointService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,34 +12,33 @@ export class ValidarTokenComponent implements OnInit {
 
   token: string = "";
   tokenValido: boolean = true;
+  tokenForm!: FormGroup
 
-  constructor(private authService: EndPointService) { }
+  constructor(private authService: EndPointService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   validarToken() {
-    this.authService.validToken({ token: this.token }).subscribe({
-      next: (response) => {
-        if (response.response === 200) {
-          console.log('Token válido');
-          this.tokenValido = true;
-          this.signIn()
+    if (this.tokenForm.valid) {
+      this.authService.validToken(this.tokenForm.value).subscribe({
+        next: (response) => {
+          if (response.response === 200) {
+            console.log(response);
+            this.router.navigateByUrl("/resetSenha");
+          }
+          else {
+            alert(response.mensagem)
+            console.log(response)
+            this.tokenValido = false;
+          }
+        },
+        error: (error) => {
+          console.log(error);
         }
-        else {
-          console.log(response)
-          alert(response.mensagem)
-          this.tokenValido = false;
-        }
-      },
-      error: (error) => {
-        console.log("Erro na solicitação HTTP:", error)
-      }
-    })
-  }
-
-
-  signIn() {
-    alert("Token enviado com sucesso!")
+      });
+    } else {
+      alert('Preencha os campos obrigatórios.');
+    }
   }
 }
