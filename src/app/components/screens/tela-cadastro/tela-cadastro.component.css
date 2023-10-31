@@ -94,3 +94,69 @@ button {
 button:hover {
     background-color: #3c8eb7;
 }
+
+@media screen and (min-width: 360px) {
+    header {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    .header-wrapper {
+        width: 500px;
+        max-width: 100%; /* Largura total da tela em telas maiores */
+        padding: 50px;
+    }
+
+    .material-symbols-outlined {
+        margin-right: 0;
+        top: 10px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    header {
+        margin-top: 100px;
+        margin-bottom: 160px;
+    }
+
+    .header-wrapper {
+        width: 500px;
+        max-width: 100%; /* Largura total da tela em telas maiores */
+        padding: 50px;
+    }
+
+    .material-symbols-outlined {
+        margin-right: 0;
+        top: 10px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 1360px) {
+    header {
+        margin-top: 70px;
+        margin-bottom: 35px;
+    }
+
+    .header-wrapper {
+        width: 500px;
+        max-width: 100%; /* Largura total da tela em telas maiores */
+        padding: 50px;
+    }
+
+    .material-symbols-outlined {
+        margin-right: 0;
+        top: 10px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}

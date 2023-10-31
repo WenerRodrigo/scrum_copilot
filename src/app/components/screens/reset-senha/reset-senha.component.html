@@ -2,10 +2,6 @@
     <h2 class="title">Resetar Senha</h2>
     <form class="form" [formGroup]="resetSenhaForm" (ngSubmit)="onSubmit">
         <div class="box">
-            <label>Email</label>
-            <input type="email" formControlName="email" placeholder="Digite seu e-mail">
-        </div>
-        <div class="box">
             <label>Nova senha</label>
             <input type="{{ visible ? 'text' : 'password' }}" formControlName="password" placeholder="Digite sua senha">
             <span (click)="viewPassword()"

@@ -94,3 +94,36 @@ button:hover {
     font-size: 12px;
     margin-top: 5px;
 }
+
+@media screen and (min-width: 360px) {
+    .container {
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    header {
+        margin-top: 100px;
+        margin-bottom: 160px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 1360px) {
+    header {
+        margin-top: 70px;
+        margin-bottom: 40px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+}

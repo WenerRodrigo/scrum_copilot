@@ -84,3 +84,35 @@ button {
 button:hover {
     background-color: #3c8eb7;
 }
+
+@media screen and (min-width: 360px) {
+    .container {
+        margin-top: 50px;
+        margin-bottom: 80px;
+    }
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .container {
+        margin-top: 90px;
+        margin-bottom: 100px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 1360px) {
+    .container {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}

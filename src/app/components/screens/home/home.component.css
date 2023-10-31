@@ -8,9 +8,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 30px;
     position: relative;
-    margin-bottom: 100px;
+    margin-bottom: 75px;
 }
 
 .header-wrapper {
@@ -81,4 +81,93 @@ a {
     margin-bottom: 1rem;
     font-family: 'Roboto', sans-serif;
     font-weight: Bold;
+}
+
+
+@media screen and (min-width: 320px) {
+    header {
+        margin-top: 20px;
+        margin-bottom: 300px;
+    }
+    
+    .header-wrapper {
+        max-width: 100%; /* Largura total da tela em telas menores */
+        padding: 20px; /* Redução do preenchimento para telas menores */
+    }
+
+    .material-symbols-outlined {
+        margin-right: 10px;
+        top: 73px;
+    }
+
+
+    .title {
+        font-size: 1.9rem;
+    }
+
+    @media screen and (min-width: 360px) {
+        header {
+            margin-top: 100px;
+            margin-bottom: 160px;
+        }
+    
+        .header-wrapper {
+            width: 500px;
+            max-width: 100%; /* Largura total da tela em telas maiores */
+            padding: 50px;
+        }
+    
+        .material-symbols-outlined {
+            margin-right: 168px;
+            top: 100px;
+        }
+    
+        .title {
+            font-size: 2rem;
+        }
+    }
+
+    @media screen and (min-width: 640px) {
+        header {
+            margin-top: 100px;
+            margin-bottom: 160px;
+        }
+    
+        .header-wrapper {
+            width: 500px;
+            max-width: 100%; /* Largura total da tela em telas maiores */
+            padding: 50px;
+        }
+    
+        .material-symbols-outlined {
+            margin-right: 168px;
+            top: 100px;
+        }
+    
+        .title {
+            font-size: 2rem;
+        }
+    }
+
+    @media screen and (min-width: 1360px) {
+        header {
+            margin-top: 70px;
+            margin-bottom: 35px;
+        }
+    
+        .header-wrapper {
+            width: 500px;
+            max-width: 100%; /* Largura total da tela em telas maiores */
+            padding: 50px;
+        }
+    
+        .material-symbols-outlined {
+            margin-right: 463px;
+            top: 100px;
+        }
+    
+        .title {
+            font-size: 2rem;
+        }
+    }
 }
