@@ -36,12 +36,15 @@ export class ValidarEmailComponent implements OnInit {
           }
         },
         error: (error) => {
-          console.log("Erro na solicitação HTTP:", error)
+          console.log(error)
+          alert('Erro ao enviar email')
         }
       })
-    } else {
+    }
+    else {
       this.inputInvalid = true;
     }
+    
   }
 
   //validarEmail(email: string): boolean {
