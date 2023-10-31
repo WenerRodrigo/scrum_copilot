@@ -19,17 +19,16 @@ export class EndPointService {
     return this.http.post<any>(`${this.baseUrl}usuarios/gerarusuario`, signUpObj);
   }
 
-  recuperarEmail(emailObj:any) {
-    console.log(emailObj)
-    return this.http.post<any>(`${this.baseUrl}usuarios/recuperarsenha_email`, emailObj);
+  recuperarEmail(emailObj: string) {
+    return this.http.post<any>(this.baseUrl + 'usuarios/recuperarsenha_email/' + emailObj, undefined);
   }
 
-  validToken(tokenObj:any) {
-    return this.http.post<any>(`${this.baseUrl}usuarios/token`, tokenObj);
+  getToken(identificador_usuario: string) {
+    return this.http.get<any>(this.baseUrl + 'usuarios/get_token/' + identificador_usuario, undefined);
   }
 
-  resetSenha(resetSenhaObj:any) {
-    return this.http.post<any>(`${this.baseUrl}usuarios/novasenha`, resetSenhaObj);
+  resetSenha(resetSenhaObj: string) {
+    return this.http.post<any>(this.baseUrl + 'usuarios/nova_senha' + resetSenhaObj, undefined);
   }
 
 }

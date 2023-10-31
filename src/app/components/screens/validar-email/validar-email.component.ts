@@ -24,13 +24,11 @@ export class ValidarEmailComponent implements OnInit {
   }
 
   enviarEmail() {
-    console.log(this.validEmailForm.value.email)
     if (this.validEmailForm.valid) {
-      this.authService.recuperarEmail({ email: this.validEmailForm.value.email }).subscribe({
+      this.authService.recuperarEmail(this.validEmailForm.value.email).subscribe({
         next: (response) => {
           if (response.response === 200) {
-            console.log('Email enviado com sucesso');
-            this.router.navigateByUrl("/home")
+            this.router.navigateByUrl("/validarToken?" + "&identificador_usuario=" + response.dados_extras.identificador_usuario)
           }
           else {
             console.log(response)

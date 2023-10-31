@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EndPointService } from 'src/app/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-validar-token',
@@ -8,27 +11,29 @@ import { EndPointService } from 'src/app/services/auth.service';
 })
 export class ValidarTokenComponent implements OnInit {
 
+  identificador_usuario: string = "";
+
   token: string = "";
-  tokenValido: boolean = true;
+  tokenValido: string = "";
+  
+  validToken!: FormGroup;
 
-  constructor(private authService: EndPointService) { }
-
-  ngOnInit(): void {
+  constructor(private authService: EndPointService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) {
+    this.validToken = this.formBuilder.group({
+      tokenValido: ['', Validators.required]
+    });
   }
 
-  validarToken() {
-    this.authService.validToken({ token: this.token }).subscribe({
+  ngOnInit(): void {
+
+    this.route.queryParams.subscribe( params =>{
+      this.identificador_usuario = params['identificador_usuario']
+    })
+
+    
+    this.authService.getToken(this.identificador_usuario).subscribe({
       next: (response) => {
-        if (response.response === 200) {
-          console.log('Token válido');
-          this.tokenValido = true;
-          this.signIn()
-        }
-        else {
-          console.log(response)
-          alert(response.mensagem)
-          this.tokenValido = false;
-        }
+        this.token = response.dados_extras.token
       },
       error: (error) => {
         console.log("Erro na solicitação HTTP:", error)
@@ -36,8 +41,13 @@ export class ValidarTokenComponent implements OnInit {
     })
   }
 
-
-  signIn() {
-    alert("Token enviado com sucesso!")
+  validarToken() {
+    if(this.token === this.validToken.value.tokenValido)
+    {
+      this.router.navigateByUrl("/resetSenha?identificador_usuario=" + this.identificador_usuario)
+    }
+    else{
+      alert("O Token digitado está incorreto!")
+    }
   }
 }
