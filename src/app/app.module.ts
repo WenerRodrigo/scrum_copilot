@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -12,6 +11,17 @@ import { ResetSenhaComponent } from './components/screens/reset-senha/reset-senh
 import { ValidarEmailComponent } from './components/screens/validar-email/validar-email.component';
 import { ValidarTokenComponent } from './components/screens/validar-token/validar-token.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatIconModule } from '@angular/material/icon'
+import { MatListModule } from '@angular/material/list'
+import { MatButtonModule } from '@angular/material/button'
+import { MatCardModule } from '@angular/material/card';
+import { TelaSobreComponent } from './components/screens/tela-sobre/tela-sobre.component';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -23,15 +33,20 @@ import { HttpClientModule } from '@angular/common/http';
     ResetSenhaComponent,
     ValidarEmailComponent,
     ValidarTokenComponent,
+    TelaSobreComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,40 @@
-<header>
-    <div class="box_button" routerLink="/home">
-        <button class="button_logout">
-            <i class="material-symbols-outlined">logout</i> Sair
+<p>
+    <mat-toolbar class="custom_toolbar">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+            </mat-icon>
         </button>
-    </div>
+        <span class="custom_title">Scrum Copilot</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon favorite-icon" routerLink="/telaSobre">
+            <mat-icon>
+                <span class="material-symbols-outlined">
+                    group
+                    </span>
+            </mat-icon>
+        </button>
+        <button mat-icon-button class="example-icon favorite-icon">
+            <mat-icon>
+                <span class="material-symbols-outlined">
+                    favorite
+                </span>
+            </mat-icon>
+        </button>
+        <button mat-icon-button class="example-icon"
+            routerLink="/home">
+            <mat-icon>
+                <span class="button-logout" class="material-symbols-outlined">
+                    logout
+                </span>
+            </mat-icon>
+        </button>
+    </mat-toolbar>
+</p>
+
+<header>
     <div class="container">
         <h2 class="title">Metas</h2>
         <form [formGroup]="meuFormulario" (ngSubmit)="submitForm()">
@@ -64,9 +95,21 @@
                 </div>
             </td>
             <td class="acoes-button">
-                <button class="button-edit" (click)="editar(i)">Editar</button>
-                <button class="button-save" (click)="salvar()">Salvar</button>
-                <button class="button-remove" (click)="remover(i)">Remover</button>
+                <button class="button-edit" (click)="editar(i)">
+                    <span class="material-symbols-outlined">
+                        edit
+                    </span>
+                </button>
+                <button class="button-save" (click)="salvar()">
+                    <span class="material-symbols-outlined">
+                        check_circle
+                    </span>
+                </button>
+                <button class="button-remove" (click)="remover(i)">
+                    <span class="material-symbols-outlined">
+                        delete
+                    </span>
+                </button>
             </td>
         </tr>
     </tbody>

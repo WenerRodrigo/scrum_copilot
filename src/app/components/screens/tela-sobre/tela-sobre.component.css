@@ -1,0 +1,120 @@
+.custom_toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #3c8eb7;
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    gap: 10px;
+}
+
+.custom_title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    gap: 10px;
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.descricao {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    font-family: 'Roboto', sans-serif;
+    list-style: none;
+    color: #504e4e;
+}
+
+.subtitle {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.descricao_texto {
+    font-size: 20px;
+    color: #000000;
+    margin-bottom: 30px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+
+}
+h2 {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+}
+
+.team-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 10px;
+}
+
+.team-gallery:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.subtitle_video {
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+}
+
+.container_video{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.video-container {
+    padding-bottom: 30px;
+    padding-top: 10px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-left: 435px;
+}
