@@ -10,6 +10,7 @@ export class TelaPrincipalComponent implements OnInit {
   meuFormulario: FormGroup;
   metas: any[] = [];
   metaEmEdicao: number | null = null;
+  metaSalva: boolean = false;
 
 
   constructor(private formBuilder: FormBuilder) {
@@ -35,6 +36,7 @@ export class TelaPrincipalComponent implements OnInit {
       formValues.nomeMeta = this.meuFormulario.get('nomeMeta')?.value;
       this.metas.push(formValues);
       this.resetForm();
+      this.metaSalva = true;
     }
   }
 
@@ -66,10 +68,19 @@ export class TelaPrincipalComponent implements OnInit {
     }
   }
 
+  isListaMetasVazia(): boolean {
+    return this.metas.length === 0;
+
+  }
+
   remover(index: number) {
     if (confirm('Deseja realmente remover a meta?')) {
       this.metas.splice(index, 1);
       this.resetForm();
+
+      if (this.isListaMetasVazia()) {
+        this.metaSalva = false;
+      }
     }
   }
 
