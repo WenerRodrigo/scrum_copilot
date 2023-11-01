@@ -118,3 +118,107 @@ h2 {
     margin-top: 20px;
     margin-left: 435px;
 }
+
+@media screen and (min-width: 360px) {
+    .container {
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
+
+    .subtitle_video, h2 {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        margin-left: 35vh;
+    }
+    
+    .team-gallery {
+        margin-left: 45vh;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .video-container {
+        margin-left: 0px;
+        align-items: center;
+    
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .container {
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
+
+    .subtitle_video, h2 {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        margin-left: 0vh;
+    }
+    
+    .team-gallery {
+        margin-left: 5vh;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .video-container {
+        margin-left: 50px;
+        align-items: center;
+
+    
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
+
+    .subtitle_video, h2 {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        margin-left: 0vh;
+    }
+    
+    .team-gallery {
+        margin-left: 5vh;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .video-container {
+        margin-left: 47vh;
+        align-items: center;
+
+    
+    }
+}
+
+
+@media screen and (min-width: 1360px) {
+    .container {
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
+
+    .subtitle_video, h2 {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        margin-left: 0vh;
+    }
+    
+    .team-gallery {
+        margin-left: 5vh;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .video-container {
+        margin-left: 66vh;
+        align-items: center;
+
+    
+    }
+}

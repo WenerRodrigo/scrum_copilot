@@ -7,7 +7,7 @@
     padding: 10px;
     border-radius: 5px;
     height: 100%;
-    margin-bottom: 200px;
+    margin-bottom: 170px;
 }
 
 .title {
@@ -64,7 +64,7 @@ input:focus {
     cursor: pointer;
     position: absolute;
     right: 15px;
-    margin-top: 29px;
+    margin-top: 23px;
     top: 10px;
 
 }
@@ -94,4 +94,68 @@ button {
 
 button:hover {
     background-color: #3c8eb7;
+}
+
+@media screen and (min-width: 360px) {
+    .container {
+        margin-top: 50px;
+        margin-bottom: 150px;
+    }
+
+    .material-symbols-outlined {
+        margin-right: 0;
+        top: 10px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .container {
+        margin-top: 50px;
+        margin-bottom: 190px;
+    }
+
+    .material-symbols-outlined {
+        margin-right: 0;
+        top: 10px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        margin-top: 70px;
+        margin-bottom: 310px;
+    }
+
+    .material-symbols-outlined {
+        margin-right: 0;
+        top: 10px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 1360px) {
+    .container {
+        margin-top: 70px;
+        margin-bottom: 230px;
+    }
+
+    .material-symbols-outlined {
+        margin-right: 0;
+        top: 10px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
 }

@@ -10,7 +10,7 @@ export class TelaPrincipalComponent implements OnInit {
   meuFormulario: FormGroup;
   metas: any[] = [];
   metaEmEdicao: number | null = null;
-  
+
 
   constructor(private formBuilder: FormBuilder) {
     this.meuFormulario = this.formBuilder.group({
@@ -19,13 +19,13 @@ export class TelaPrincipalComponent implements OnInit {
       dataFim: ['', Validators.required],
       id: ['', Validators.required],
       progresso: ['', Validators.required],
-      nomeMeta: [''], 
+      nomeMeta: [''],
     })
   }
 
 
   ngOnInit(): void { }
-  
+
 
   submitForm() {
     if (this.metaEmEdicao !== null) {
@@ -52,7 +52,7 @@ export class TelaPrincipalComponent implements OnInit {
     })
   }
 
-  salvar(){
+  salvar() {
     if (this.metaEmEdicao !== null) {
       this.salvarMeta();
     }
