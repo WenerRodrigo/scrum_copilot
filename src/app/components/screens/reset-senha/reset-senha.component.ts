@@ -1,5 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EndPointService } from 'src/app/services/auth.service';
 
 @Injectable({
@@ -20,7 +20,6 @@ export class ResetSenhaComponent implements OnInit {
 
   constructor(private authService: EndPointService, private formBuilder: FormBuilder) {
     this.resetSenhaForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
 
@@ -35,9 +34,6 @@ export class ResetSenhaComponent implements OnInit {
     } else {
       console.log("Senha inválida: " + this.resetSenhaForm.value.password)
     }
-    console.log("this.password")
-    console.log(this.password)
-    //this.singIn(this.password)
   }
 
   viewPassword() {
@@ -50,17 +46,6 @@ export class ResetSenhaComponent implements OnInit {
 
   togglePasswordVisibility() {
     this.visible = !this.visible;
-  }
-
-  singIn() {
-    this.authService.signUp(this.password).subscribe(
-      (response: any) => {
-        console.log('Cadastro realizado com sucesso');
-      },
-      (error: any) => {
-        console.error('Erro ao cadastrar:', error);
-      }
-    );
   }
 
   ngOnInit(): void {

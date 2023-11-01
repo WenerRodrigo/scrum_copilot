@@ -96,15 +96,9 @@ button:hover {
 }
 
 @media screen and (min-width: 360px) {
-    header {
+    .container {
         margin-top: 100px;
         margin-bottom: 100px;
-    }
-
-    .header-wrapper {
-        width: 500px;
-        max-width: 100%; /* Largura total da tela em telas maiores */
-        padding: 50px;
     }
 
     .material-symbols-outlined {
@@ -118,17 +112,11 @@ button:hover {
 }
 
 @media screen and (min-width: 640px) {
-    header {
+    .container {
         margin-top: 100px;
         margin-bottom: 160px;
     }
-
-    .header-wrapper {
-        width: 500px;
-        max-width: 100%; /* Largura total da tela em telas maiores */
-        padding: 50px;
-    }
-
+    
     .material-symbols-outlined {
         margin-right: 0;
         top: 10px;
@@ -139,21 +127,31 @@ button:hover {
     }
 }
 
-@media screen and (min-width: 1360px) {
-    header {
-        margin-top: 70px;
-        margin-bottom: 35px;
-    }
-
-    .header-wrapper {
-        width: 500px;
-        max-width: 100%; /* Largura total da tela em telas maiores */
-        padding: 50px;
+@media screen and (min-width: 1024px) {
+    .container {
+        margin-top: 50px;
+        margin-bottom: 80px;
     }
 
     .material-symbols-outlined {
         margin-right: 0;
-        top: 10px;
+        top: 100px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 1360px) {
+    .container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .material-symbols-outlined {
+        margin-right: 0;
+        top: 4px;
     }
 
     .title {
