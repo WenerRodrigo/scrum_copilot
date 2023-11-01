@@ -85,34 +85,85 @@ button:hover {
     background-color: #3c8eb7;
 }
 
-@media screen and (min-width: 360px) {
+@media (min-width: 320px) {
     .container {
         margin-top: 50px;
-        margin-bottom: 80px;
-    }
-    .title {
-        font-size: 2rem;
-    }
-}
-
-@media screen and (min-width: 640px) {
-    .container {
-        margin-top: 90px;
-        margin-bottom: 100px;
+        margin-bottom: 150px;
+        padding: 9px;
+        /* margin: 10px; */
     }
 
     .title {
-        font-size: 2rem;
-    }
-}
-
-@media screen and (min-width: 1360px) {
-    .container {
-        margin-top: 50px;
-        margin-bottom: 50px;
+        font-size: 1.4rem;
     }
 
-    .title {
-        font-size: 2rem;
+    .box_icon {
+        left: 87%;
+    }
+
+    @media (min-width: 375px) {
+        header {
+            margin-top: 50px;
+            margin-bottom: 150px;
+            padding: 9px;
+            margin-left: 30px;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 1.6rem;
+        }
+
+        .box_icon {
+            left: 89%;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .container {
+            margin-top: 40px;
+            margin-bottom: 150px;
+            padding: 9px;
+        }
+
+        .title {
+            font-size: 1.8rem;
+        }
+
+        .box_icon {
+            left: 93%;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .container {
+            margin-top: 30px;
+            margin-bottom: 100px;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 1.9rem;
+        }
+
+        .box_icon {
+            left: 93%;
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .container {
+            margin-top: 60px;
+            margin-bottom: 200px;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 1.8rem;
+        }
+
+        .box_icon {
+            left: 93%;
+        }
     }
 }

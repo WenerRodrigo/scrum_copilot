@@ -2,12 +2,17 @@
     <div class="header-wrapper">
         <h1 class="title">Scrum Copilot</h1>
         <form [formGroup]="loginForm" class="form" ng>
-            <input placeholder="E-mail" type="email" formControlName="email" required email>
-            <input type="{{ visible ? 'text' : 'password' }}" formControlName="senha" placeholder="Senha" required senha>
-            <span (click)="viewPassword()"
-                [ngClass]="visible ? 'material-symbols-outlined' : 'material-symbols-outlined' ">
-                {{ visible ? 'visibility' : 'visibility_off' }}
-            </span>
+            <input class="input_email" placeholder="E-mail" type="email" formControlName="email" required email>
+            <div class="box_input">
+                <input class="input_password" type="{{ visible ? 'text' : 'password' }}" formControlName="senha" placeholder="Senha" required
+                    senha>
+                <div class="box_icon">
+                    <span (click)="viewPassword()"
+                    [ngClass]="visible ? 'material-symbols-outlined' : 'material-symbols-outlined' ">
+                    {{ visible ? 'visibility' : 'visibility_off' }}
+                </span>
+                </div>
+            </div>
 
             <!-- <button (click)="onLogin()" routerLink="/telaPrincipal">Entrar</button> -->
             <button (click)="onLogin()">Entrar</button>

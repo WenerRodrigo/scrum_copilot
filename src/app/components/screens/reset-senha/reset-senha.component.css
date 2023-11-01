@@ -96,66 +96,85 @@ button:hover {
     background-color: #3c8eb7;
 }
 
-@media screen and (min-width: 360px) {
+@media (min-width: 320px) {
     .container {
         margin-top: 50px;
         margin-bottom: 150px;
-    }
-
-    .material-symbols-outlined {
-        margin-right: 0;
-        top: 10px;
+        padding: 9px;
+        /* margin: 10px; */
     }
 
     .title {
-        font-size: 2rem;
-    }
-}
-
-@media screen and (min-width: 640px) {
-    .container {
-        margin-top: 50px;
-        margin-bottom: 190px;
+        font-size: 1.4rem;
     }
 
-    .material-symbols-outlined {
-        margin-right: 0;
-        top: 10px;
+    .box_icon {
+        left: 87%;
     }
 
-    .title {
-        font-size: 2rem;
-    }
-}
+    @media (min-width: 375px) {
+        header {
+            margin-top: 50px;
+            margin-bottom: 150px;
+            padding: 9px;
+            margin-left: 30px;
+            width: 100%;
+        }
 
-@media screen and (min-width: 1024px) {
-    .container {
-        margin-top: 70px;
-        margin-bottom: 310px;
-    }
+        .title {
+            font-size: 1.6rem;
+        }
 
-    .material-symbols-outlined {
-        margin-right: 0;
-        top: 10px;
-    }
-
-    .title {
-        font-size: 2rem;
-    }
-}
-
-@media screen and (min-width: 1360px) {
-    .container {
-        margin-top: 70px;
-        margin-bottom: 230px;
+        .box_icon {
+            left: 89%;
+        }
     }
 
-    .material-symbols-outlined {
-        margin-right: 0;
-        top: 10px;
+    @media (min-width: 768px) {
+        .container {
+            margin-top: 40px;
+            margin-bottom: 150px;
+            padding: 9px;
+        }
+
+        .title {
+            font-size: 1.8rem;
+        }
+
+        .box_icon {
+            left: 93%;
+        }
     }
 
-    .title {
-        font-size: 2rem;
+    @media (min-width: 1024px) {
+        .container {
+            margin-top: 30px;
+            margin-bottom: 100px;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 1.9rem;
+        }
+
+        .box_icon {
+            left: 93%;
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .container {
+            margin-top: 60px;
+            margin-bottom: 200px;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 1.8rem;
+        }
+
+        .box_icon {
+            left: 93%;
+        }
     }
 }

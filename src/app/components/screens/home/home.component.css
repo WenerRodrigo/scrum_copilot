@@ -1,16 +1,10 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 header {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
-    position: relative;
-    margin-bottom: 75px;
+    margin-top: 90px;
+    /* position: relative; */
+    margin-bottom: 80px;
 }
 
 .header-wrapper {
@@ -27,7 +21,12 @@ header {
     flex-direction: column;
 }
 
-input {
+.box_input {
+    position: relative;
+    width: 100%;
+}
+
+.input_email {
     padding: 0.5rem;
     margin: 0.5rem 0;
     border: 1px solid #ccc;
@@ -37,20 +36,41 @@ input {
     font-family: 'Roboto', sans-serif;
 }
 
+.input_password {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #000;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+
+}
+
 input:focus {
     background-color: #f5f5f5;
 }
 
+.box_icon {
+    position: absolute;
+    width: 100%;
+    top: 14px;
+    left: 93%;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    padding-right: 2px;
+}
 
 .material-symbols-outlined {
     font-size: 20px;
     color: #ccc;
     cursor: pointer;
-    position: absolute;
-    right: 15px;
+    /* right: 15px;
     margin-top: 68px;
     margin-right: 500px;
-    top: 100px;
+    top: 100px; */
 
 }
 
@@ -84,90 +104,92 @@ a {
 }
 
 
-@media screen and (min-width: 320px) {
+@media (min-width: 320px) {
     header {
-        margin-top: 20px;
-        margin-bottom: 300px;
+        margin-top: 30px;
+        margin-bottom: 130px;
+        padding: 9px;
+        margin-left: 25px;
+        /* margin: 10px; */
     }
-    
-    .header-wrapper {
-        max-width: 100%; /* Largura total da tela em telas menores */
-        padding: 20px; /* Redução do preenchimento para telas menores */
-    }
-
-    .material-symbols-outlined {
-        margin-right: 10px;
-        top: 73px;
-    }
-
 
     .title {
-        font-size: 1.9rem;
+        font-size: 1.3rem;
     }
 
-    @media screen and (min-width: 360px) {
-        header {
-            margin-top: 100px;
-            margin-bottom: 160px;
-        }
-    
-        .header-wrapper {
-            width: 500px;
-            max-width: 100%; /* Largura total da tela em telas maiores */
-            padding: 50px;
-        }
-    
-        .material-symbols-outlined {
-            margin-right: 168px;
-            top: 100px;
-        }
-    
-        .title {
-            font-size: 2rem;
-        }
+    .box_icon {
+        left: 87%;
     }
 
-    @media screen and (min-width: 640px) {
+    @media (min-width: 375px) {
         header {
-            margin-top: 100px;
-            margin-bottom: 160px;
+            margin-top: 50px;
+            margin-bottom: 150px;
+            padding: 9px;
+            margin-left: 30px;
+            width: 100%;
         }
-    
-        .header-wrapper {
-            width: 500px;
-            max-width: 100%; /* Largura total da tela em telas maiores */
-            padding: 50px;
-        }
-    
-        .material-symbols-outlined {
-            margin-right: 168px;
-            top: 100px;
-        }
-    
+
         .title {
-            font-size: 2rem;
+            font-size: 1.6rem;
+        }
+
+        .box_icon {
+            left: 89%;
         }
     }
 
-    @media screen and (min-width: 1360px) {
+    @media (min-width: 768px) {
         header {
-            margin-top: 70px;
-            margin-bottom: 35px;
+            margin-top: 40px;
+            margin-bottom: 150px;
+            padding: 9px;
         }
-    
-        .header-wrapper {
-            width: 500px;
-            max-width: 100%; /* Largura total da tela em telas maiores */
-            padding: 50px;
-        }
-    
-        .material-symbols-outlined {
-            margin-right: 473px;
-            top: 100px;
-        }
-    
+
         .title {
-            font-size: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .box_icon {
+            left: 93%;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        header {
+            margin-top: 60px;
+            margin-bottom: 50px;
+            width: 95%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .title {
+            font-size: 1.8rem;
+        }
+
+        .box_icon {
+            left: 93%;
+        }
+    }
+
+    @media (min-width: 1440px) {
+        header {
+            margin-top: 60px;
+            margin-bottom: 150px;
+            width: 95%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .title {
+            font-size: 1.8rem;
+        }
+
+        .box_icon {
+            left: 93%;
         }
     }
 }

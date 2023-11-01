@@ -65,15 +65,13 @@
     gap: 30px;
 
 }
-h2 {
-    font-size: 35px;
-    font-weight: bold;
+
+.subtitle_galery {
+    font-size: 3rem;
     margin-bottom: 30px;
-    margin-top: 20px;
     font-family: 'Roboto', sans-serif;
     align-items: center;
     justify-content: center;
-    display: flex;
 
 }
 
@@ -104,7 +102,7 @@ h2 {
 
 }
 
-.container_video{
+.container_video {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,106 +117,389 @@ h2 {
     margin-left: 435px;
 }
 
-@media screen and (min-width: 360px) {
-    .container {
-        margin-top: 50px;
-        margin-bottom: 100px;
+@media (min-width: 320px) {
+
+    .box_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 66vh;
     }
 
-    .subtitle_video, h2 {
-        font-size: 1.5rem;
-        margin-top: 20px;
-        margin-left: 35vh;
+    .custom_toolbar {
+        width: 100%;
+        padding: 20px;
+        align-items: center;
     }
-    
-    .team-gallery {
-        margin-left: 45vh;
+
+    .custom_title {
+        font-size: 2rem;
         align-items: center;
         justify-content: center;
     }
 
-    .video-container {
-        margin-left: 0px;
-        align-items: center;
-    
+    .container {
+        width: 100%;
+        height: 100%;
+        font-size: 2rem;
     }
+
+    .title {
+        font-size: 3rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .descricao {
+        font-size: 1.6rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .descricao_texto {
+        font-size: 1.9rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .subtitle {
+        font-size: 2.5rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .team-gallery {
+        width: 200px;
+        font-size: 2rem;
+    }
+
+    .video-container {
+        margin-left: 0;
+        width: 380px;
+        height: 380px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (min-width: 375px) {
+        .box_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 68vh;
+        }
+
+        .custom_toolbar {
+            width: 100%;
+            padding: 20px;
+            align-items: center;
+        }
+
+        .custom_title {
+            font-size: 1.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            font-size: 1.2rem;
+        }
+
+        .title {
+            font-size: 2rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .descricao {
+            font-size: 1.2rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .descricao_texto {
+            font-size: 1.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subtitle {
+            font-size: 1.7rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subtitle_video {
+            font-size: 1.7rem;
+        }
+
+        .subtitle_galery {
+            font-size: 1.7rem;
+        }
+
+        .team-gallery {
+            width: 300px;
+            font-size: 1.4rem;
+        }
+
+        .video-container {
+            margin-left: 0;
+            width: 380px;
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .box_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .custom_toolbar {
+            width: 100%;
+            padding: 30px;
+            align-items: center;
+        }
+
+        .custom_title {
+            font-size: 1.3rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            font-size: 1.2rem;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .descricao {
+            font-size: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .descricao_texto {
+            font-size: 1.1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subtitle_video {
+            font-size: 1.3rem;
+        }
+
+        .subtitle_galery {
+            font-size: 1.3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .team-gallery {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 1.4rem;
+        }
+
+        .video-container {
+            margin-left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .box_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .custom_toolbar {
+            width: 100%;
+            padding: 30px;
+            align-items: center;
+        }
+
+        .custom_title {
+            font-size: 1.3rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            font-size: 1.2rem;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .descricao {
+            font-size: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .descricao_texto {
+            font-size: 1.1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subtitle_video {
+            font-size: 1.6rem;
+        }
+
+        .subtitle_galery {
+            font-size: 1.6rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .team-gallery {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 1.4rem;
+        }
+
+        .video-container {
+            margin-left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
 }
 
-@media screen and (min-width: 640px) {
-    .container {
-        margin-top: 50px;
-        margin-bottom: 100px;
+@media (min-width: 1440px) {
+    .box_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
     }
 
-    .subtitle_video, h2 {
-        font-size: 1.5rem;
-        margin-top: 20px;
-        margin-left: 0vh;
+    .custom_toolbar {
+        width: 100%;
+        padding: 30px;
+        align-items: center;
     }
-    
-    .team-gallery {
-        margin-left: 5vh;
+
+    .custom_title {
+        font-size: 1.7rem;
         align-items: center;
         justify-content: center;
     }
 
-    .video-container {
-        margin-left: 50px;
-        align-items: center;
-
-    
-    }
-}
-
-@media screen and (min-width: 1024px) {
     .container {
-        margin-top: 50px;
-        margin-bottom: 100px;
+        width: 100%;
+        height: 100%;
     }
 
-    .subtitle_video, h2 {
-        font-size: 1.5rem;
-        margin-top: 20px;
-        margin-left: 0vh;
-    }
-    
-    .team-gallery {
-        margin-left: 5vh;
+    .title {
+        font-size: 1.9rem;
         align-items: center;
         justify-content: center;
     }
 
-    .video-container {
-        margin-left: 47vh;
-        align-items: center;
-
-    
-    }
-}
-
-
-@media screen and (min-width: 1360px) {
-    .container {
-        margin-top: 50px;
-        margin-bottom: 100px;
-    }
-
-    .subtitle_video, h2 {
+    .descricao {
         font-size: 1.5rem;
-        margin-top: 20px;
-        margin-left: 0vh;
-    }
-    
-    .team-gallery {
-        margin-left: 5vh;
         align-items: center;
         justify-content: center;
     }
 
-    .video-container {
-        margin-left: 66vh;
+    .descricao_texto {
+        font-size: 1.7rem;
         align-items: center;
+        justify-content: center;
+    }
 
-    
+    .subtitle {
+        font-size: 1.8rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .subtitle_video {
+        font-size: 1.6rem;
+    }
+
+    .subtitle_galery {
+        font-size: 1.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .team-gallery {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        font-size: 1.8rem;
+    }
+
+    .video-container {
+        margin-left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
