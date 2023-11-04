@@ -60,6 +60,10 @@
                     <input type="number" id="progresso" formControlName="progresso">
                 </div>
                 <div class="form-group">
+                    <label for="impedimentos">Impedimentos:</label>
+                    <input type="text" id="impedimentos" formControlName="impedimentos">
+                </div>
+                <div class="form-group">
                     <label for="id">Id:</label>
                     <input type="text" id="id" formControlName="id">
                 </div>
@@ -78,6 +82,7 @@
             <th>Data Início</th>
             <th>Data Fim</th>
             <th>Progresso</th>
+            <th>Impedimentos</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -94,6 +99,7 @@
                     </div>
                 </div>
             </td>
+            <td>{{ meta.impedimentos }}</td>
             <td class="acoes-button">
                 <button class="button-edit" (click)="editar(i)">
                     <span class="material-symbols-outlined">

@@ -21,6 +21,7 @@ export class TelaPrincipalComponent implements OnInit {
       id: ['', Validators.required],
       progresso: ['', Validators.required],
       nomeMeta: [''],
+      impedimentos: [''],
     })
   }
 
@@ -51,6 +52,7 @@ export class TelaPrincipalComponent implements OnInit {
       id: meta.id,
       progresso: meta.progresso,
       nomeMeta: meta.nomeMeta,
+      impedimentos: meta.impedimentos,
     })
   }
 
