@@ -1,3 +1,7 @@
+.box_container {
+   
+}
+
 .custom_toolbar {
     display: flex;
     justify-content: space-between;
@@ -16,6 +20,12 @@
     font-family: 'Roboto', sans-serif;
     color: #fff;
     gap: 10px;
+}
+
+.example-icon {
+    font-size: 20px;
+    color: red;
+
 }
 
 
@@ -84,10 +94,10 @@
     margin: 10px;
 }
 
-.team-gallery:hover {
-    transform: scale(1.1);
+/* .team-gallery:hover {
+    transform: scale(1);
     transition: 0.5s;
-}
+} */
 
 .subtitle_video {
     font-size: 35px;
