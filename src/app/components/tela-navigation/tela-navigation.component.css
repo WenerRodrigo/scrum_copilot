@@ -1,0 +1,98 @@
+.master_page {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background-color: #660bd6;
+    position: sticky;
+    top: 0; 
+    z-index: 100;
+}
+
+.title_cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+    text-align: center;
+    color: #fff;
+    
+}
+
+.img_logo {
+    padding: 7px;
+    border-radius: 10%;
+}
+
+.container {
+    min-height: 100%;
+}
+
+.box_navigation {
+    position: fixed;
+    width: 60px;
+    height: 100%;
+    background: #660bd6;
+    transition: 0.5s;
+    overflow: hidden;
+    display: flex;
+}
+
+.box_navigation:hover {
+    width: 200px;
+}
+
+.box_navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.box_navigation ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+}
+
+.box_navigation ul li:hover {
+    background: #a67bdb;
+
+}
+
+.box_navigation ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: #fff;
+}
+
+.box_navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 80px;
+    line-height: 60px;
+    text-align: center;
+}
+
+.box_navigation ul li a .icon .fa-solid {
+    font-size: 20px;
+}
+
+.box_navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    white-space: nowrap;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+}
