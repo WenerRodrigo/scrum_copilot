@@ -1,0 +1,66 @@
+<app-tela-navigation></app-tela-navigation>
+
+<div class="user-info">
+    <span>Usuário Logado: {{ userEmail }}</span>
+</div>
+
+<div class="box_caixa">
+    <div class="box_metas">
+        <div class="box_elemento">
+            <h2 class="description">Metas Concluídas</h2>
+            <div class="progress-circle">
+                <div class="spinner">
+                    <mat-spinner></mat-spinner>
+                </div>
+                <div class="descricao_box">
+                    <span>Quantidade de metas concluidas</span>
+                    <button class="button_detalhes" routerLink="/telaMetas">Detalhes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box_metas">
+        <div class="box_elemento">
+            <h2 class="description">Metas em Atraso</h2>
+            <div class="progress-circle">
+                <div class="spinner_atraso">
+                    <mat-spinner></mat-spinner>
+                </div>
+                <div class="descricao_box">
+                    <span>Quantidade de metas em Atraso</span>
+                    <button class="button_detalhes" routerLink="/telaMetas">Detalhes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box_metas">
+        <div class="box_elemento">
+            <h2 class="description">Metas Pendentes</h2>
+            <div class="progress-circle">
+                <div class="spinner_pendente">
+                    <mat-spinner></mat-spinner>
+                </div>
+                <div class="descricao_box">
+                    <span>Quantidade de metas Pendentes</span>
+                    <button class="button_detalhes" routerLink="/telaMetas">Detalhes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box_metas">
+        <div class="box_elemento">
+            <h2 class="description">Metas em Execução</h2>
+            <div class="progress-circle">
+                <div class="spinner_execucao">
+                    <mat-spinner></mat-spinner>
+                </div>
+                <div class="descricao_box">
+                    <span>Quantidade de metas Execução</span>
+                    <button class="button_detalhes" routerLink="/telaMetas">Detalhes</button>
+                </div>
+            </div>
+        </div>
+    </div>
