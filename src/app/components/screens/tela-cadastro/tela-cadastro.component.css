@@ -116,7 +116,7 @@ button:hover {
         margin-top: 100px;
         margin-bottom: 160px;
     }
-    
+
     .material-symbols-outlined {
         margin-right: 0;
         top: 10px;
@@ -129,13 +129,13 @@ button:hover {
 
 @media screen and (min-width: 1024px) {
     .container {
-        margin-top: 50px;
+        margin-top: 45px;
         margin-bottom: 80px;
     }
 
     .material-symbols-outlined {
-        margin-right: 0;
-        top: 100px;
+        top: 0;
+
     }
 
     .title {
@@ -143,15 +143,14 @@ button:hover {
     }
 }
 
-@media screen and (min-width: 1360px) {
+@media (min-width: 1360px) {
     .container {
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
     .material-symbols-outlined {
-        margin-right: 0;
-        top: 4px;
+        top: 0;
     }
 
     .title {

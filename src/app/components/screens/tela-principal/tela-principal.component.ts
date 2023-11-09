@@ -11,6 +11,7 @@ export class TelaPrincipalComponent implements OnInit {
   metas: any[] = [];
   metaEmEdicao: number | null = null;
   metaSalva: boolean = false;
+  isPopupVisible: boolean = false;
 
 
   constructor(private formBuilder: FormBuilder) {
@@ -18,16 +19,20 @@ export class TelaPrincipalComponent implements OnInit {
       meta: ['', Validators.required],
       dataInicio: ['', Validators.required],
       dataFim: ['', Validators.required],
-      id: ['', Validators.required],
-      progresso: ['', Validators.required],
       nomeMeta: [''],
-      impedimentos: [''],
     })
   }
 
 
   ngOnInit(): void { }
 
+  openPopup() {
+    this.isPopupVisible = true;
+  }
+
+  closePopup() {
+    this.isPopupVisible = false;
+  }
 
   submitForm() {
     if (this.metaEmEdicao !== null) {
@@ -38,27 +43,22 @@ export class TelaPrincipalComponent implements OnInit {
       this.metas.push(formValues);
       this.resetForm();
       this.metaSalva = true;
+      this.closePopup();
     }
   }
 
 
   editar(index: number) {
     this.metaEmEdicao = index;
-    const meta = this.metas[index];
-    this.meuFormulario.setValue({
-      meta: meta.meta,
-      dataInicio: meta.dataInicio,
-      dataFim: meta.dataFim,
-      id: meta.id,
-      progresso: meta.progresso,
-      nomeMeta: meta.nomeMeta,
-      impedimentos: meta.impedimentos,
-    })
+    this.meuFormulario.patchValue(this.metas[index]);
+    this.openPopup();
   }
 
   salvar() {
-    if (this.metaEmEdicao !== null) {
-      this.salvarMeta();
+    if (this.metaEmEdicao !== null && this.meuFormulario.valid) {
+      this.metas[this.metaEmEdicao] = this.meuFormulario.value;
+      this.resetForm();
+      this.metaEmEdicao = null;
     }
   }
 
@@ -91,11 +91,11 @@ export class TelaPrincipalComponent implements OnInit {
     this.metaEmEdicao = null;
   }
 
-  getProgressBarStyle(progresso: number) {
-    if (progresso < 40) {
-      return { 'width': progresso + '%', 'background-color': 'red' };
-    } else {
-      return { 'width': progresso + '%', 'background-color': '#4CAF50' };
-    }
-  }
+  // getProgressBarStyle(progresso: number) {
+  //   if (progresso < 40) {
+  //     return { 'width': progresso + '%', 'background-color': 'red' };
+  //   } else {
+  //     return { 'width': progresso + '%', 'background-color': '#4CAF50' };
+  //   }
+  // }
 }

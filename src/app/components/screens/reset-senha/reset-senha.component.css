@@ -165,7 +165,6 @@ button:hover {
     @media (min-width: 1440px) {
         .container {
             margin-top: 60px;
-            margin-bottom: 200px;
             width: 100%;
         }
 

@@ -35,8 +35,9 @@ export class HomeComponent implements OnInit {
       this.auth.login(this.loginForm.value).subscribe({
         next: (response) => {
           if(response.response === 200){
+            localStorage.setItem('userEmail', this.loginForm.get('email')!.value);
             console.log(response);
-            this.router.navigateByUrl("/telaPrincipal")
+            this.router.navigateByUrl("/telaDashboard")
           }
           else{
             alert(response.mensagem)

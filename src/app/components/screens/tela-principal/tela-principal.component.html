@@ -1,105 +1,57 @@
-<p>
-    <mat-toolbar class="custom_toolbar">
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon>
-                <span class="material-symbols-outlined">
-                    home
-                </span>
-            </mat-icon>
-        </button>
-        <span class="custom_title">Scrum Copilot</span>
-        <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon favorite-icon" routerLink="/telaSobre">
-            <mat-icon>
-                <span class="material-symbols-outlined">
-                    group
-                    </span>
-            </mat-icon>
-        </button>
-        <button mat-icon-button class="example-icon favorite-icon">
-            <mat-icon>
-                <span class="material-symbols-outlined">
-                    favorite
-                </span>
-            </mat-icon>
-        </button>
-        <button mat-icon-button class="example-icon"
-            routerLink="/home">
-            <mat-icon>
-                <span class="button-logout" class="material-symbols-outlined">
-                    logout
-                </span>
-            </mat-icon>
-        </button>
-    </mat-toolbar>
-</p>
+<app-tela-navigation></app-tela-navigation>
 
-<header>
-    <div class="container">
-        <h2 class="title">Metas</h2>
-        <form [formGroup]="meuFormulario" (ngSubmit)="submitForm()">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="meta">Meta:</label>
-                    <input type="text" id="meta" formControlName="meta">
+<div class="popup-container" *ngIf="isPopupVisible">
+    <div class="box_container">
+        <div class="container">
+            <span class="close-button" (click)="closePopup()"><i class="fa-solid fa-circle-xmark"></i></span>
+            <h2 class="title">Metas</h2>
+            <form [formGroup]="meuFormulario" (ngSubmit)="submitForm()">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="meta">Meta:</label>
+                        <input type="text" id="meta" formControlName="meta">
+                    </div>
+                    <div class="form-group">
+                        <label for="nomeMeta">Nome da Sprint:</label>
+                        <input type="text" id="nomeMeta" formControlName="nomeMeta">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataInicio">Data Início:</label>
+                        <input type="date" id="dataInicio" formControlName="dataInicio">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataFim">Data Fim:</label>
+                        <input type="date" id="dataFim" formControlName="dataFim">
+                    </div>
+                    <button class="button-form" type="submit">Adicionar</button>
                 </div>
-                <div class="form-group">
-                    <label for="nomeMeta">Nome da Sprint:</label>
-                    <input type="text" id="nomeMeta" formControlName="nomeMeta">
-                </div>
-                <div class="form-group">
-                    <label for="dataInicio">Data Início:</label>
-                    <input type="date" id="dataInicio" formControlName="dataInicio">
-                </div>
-                <div class="form-group">
-                    <label for="dataFim">Data Fim:</label>
-                    <input type="date" id="dataFim" formControlName="dataFim">
-                </div>
-                <div class="form-group">
-                    <label for="progresso">Progresso (%):</label>
-                    <input type="number" id="progresso" formControlName="progresso">
-                </div>
-                <div class="form-group">
-                    <label for="impedimentos">Impedimentos:</label>
-                    <input type="text" id="impedimentos" formControlName="impedimentos">
-                </div>
-                <div class="form-group">
-                    <label for="id">Id:</label>
-                    <input type="text" id="id" formControlName="id">
-                </div>
-                <button class="button-form" type="submit">Adicionar</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</header>
+</div>
+
+<div class="button_popup">
+    <img class="img_popup" src="../../../../assets/lista.jpg" width="100px" alt="">
+    <h3 class="title_popup">Crie suas metas e monitore em tempo real!</h3>
+    <button (click)="openPopup()"><i class="fa-solid fa-plus"></i></button>
+</div>
 
 <table class="metas-table" *ngIf="metaSalva">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Nome da Sprint</th>
             <th>Meta</th>
             <th>Data Início</th>
             <th>Data Fim</th>
-            <th>Progresso</th>
-            <th>Impedimentos</th>
             <th>Ações</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let meta of metas; let i = index">
-            <td>{{ meta.id }}</td>
             <td>{{ meta.meta }}</td>
             <td>{{ meta.nomeMeta }}</td>
             <td>{{ meta.dataInicio | date: 'dd/MM/yyyy' }}</td>
             <td>{{ meta.dataFim | date: 'dd/MM/yyyy' }}</td>
-            <td>
-                <div class="progress-container">
-                    <div class="progress-bar" [ngStyle]="getProgressBarStyle(meta.progresso)">{{ meta.progresso }}%
-                    </div>
-                </div>
-            </td>
-            <td>{{ meta.impedimentos }}</td>
             <td class="acoes-button">
                 <button class="button-edit" (click)="editar(i)">
                     <span class="material-symbols-outlined">

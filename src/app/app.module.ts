@@ -18,8 +18,11 @@ import { MatListModule } from '@angular/material/list'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card';
 import { TelaSobreComponent } from './components/screens/tela-sobre/tela-sobre.component';
-
-
+import { TelaDashboardComponent } from './components/screens/tela-dashboard/tela-dashboard.component';
+import { TelaNavigationComponent } from './components/tela-navigation/tela-navigation.component';
+import { TelaMetasComponent } from './components/screens/tela-metas/tela-metas.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 
@@ -34,6 +37,9 @@ import { TelaSobreComponent } from './components/screens/tela-sobre/tela-sobre.c
     ValidarEmailComponent,
     ValidarTokenComponent,
     TelaSobreComponent,
+    TelaDashboardComponent,
+    TelaNavigationComponent,
+    TelaMetasComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +53,8 @@ import { TelaSobreComponent } from './components/screens/tela-sobre/tela-sobre.c
     MatListModule,
     MatButtonModule,
     MatCardModule,
+    MatProgressSpinnerModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
