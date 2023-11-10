@@ -58,6 +58,10 @@ input:focus {
     background-color: #f5f5f5;
 }
 
+.error {
+    border: 2px solid red;
+}
+
 
 .box-button {
     display: flex;

@@ -12,8 +12,8 @@
                         <input type="text" id="meta" formControlName="titulo_meta">
                     </div>
                     <div class="form-group">
-                        <label for="nomeMeta">Nome da Sprint:</label>
-                        <input type="text" id="nomeMeta" formControlName="descricao">
+                        <label for="descricaoMeta">Descrição:</label>
+                        <input type="text" id="descricaoMeta" formControlName="descricao">
                     </div>
                     <div class="form-group">
                         <label for="dataInicio">Data Início:</label>
@@ -36,13 +36,21 @@
     <button (click)="openPopup()"><i class="fa-solid fa-plus"></i></button>
 </div>
 
+<div class="input-box">
+    <input type="text" name="search" [(ngModel)]="searchText" (ngModelChange)="applyFilter()"
+        placeholder="Buscar metas">
+    <span class="icon_input"><i class="fa-solid fa-magnifying-glass"></i></span>
+</div>
+
 <table class="metas-table" *ngIf="metaSalva">
     <thead>
         <tr>
-            <th>Nome da Sprint</th>
             <th>Meta</th>
+            <th>Descriçao</th>
             <th>Data Início</th>
             <th>Data Fim</th>
+            <th>Status</th>
+            <th>Progresso</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -53,17 +61,25 @@
             <td>{{ meta.descricao }}</td>
             <td>{{ meta.data_inicio | date: 'dd/MM/yyyy' }}</td>
             <td>{{ meta.data_conclusao_prevista | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ meta.status }}</td>
+            <td>
+                <div class="progress-container">
+                    <div class="progress-bar" [ngStyle]="getProgressBarStyle(meta.progresso)">
+                        {{ meta.progresso }}%
+                    </div>
+                </div>
+            </td>
             <td class="acoes-button">
                 <button class="button-edit" (click)="editar(meta.identificador_meta)">
                     <span class="material-symbols-outlined">
                         edit
                     </span>
                 </button>
-                <button class="button-save" (click)="salvar()">
+                <!-- <button class="button-save" (click)="salvar()">
                     <span class="material-symbols-outlined">
                         check_circle
                     </span>
-                </button>
+                </button> -->
                 <button class="button-remove" (click)="remover(meta.identificador_meta)">
                     <span class="material-symbols-outlined">
                         delete

@@ -13,26 +13,43 @@ export class TelaMetasComponent implements OnInit {
 
   constructor() {
     this.metas = [
-      { nomeMeta: 'Trilha FrontEnd', meta: 'Dev Full Stack Jr', dataInicio: new Date('2023-01-01'), dataFim: new Date('2023-01-31') },
-      { nomeMeta: 'Trilha BackEnd', meta: 'BackEnd Jr', dataInicio: new Date('2023-02-01'), dataFim: new Date('2023-02-28') },
-      { nomeMeta: 'Angular Js 15', meta: 'Especializar em Angular', dataInicio: new Date('2023-03-01'), dataFim: new Date('2023-03-31') },
+      {
+        nomeMeta: 'Meta 1',
+        meta: '10',
+        dataInicio: new Date('2021-01-01'),
+        dataFim: new Date('2021-01-31'),
+        responsavel: 'João',
+        status: 'Em andamento'
+      },
+      {
+        nomeMeta: 'Meta 2',
+        meta: '20',
+        dataInicio: new Date('2021-02-01'),
+        dataFim: new Date('2021-02-28'),
+        responsavel: 'Maria',
+        status: 'Em andamento'
+      },
+      {
+        nomeMeta: 'Meta 3',
+        meta: '30',
+        dataInicio: new Date('2021-03-01'),
+        dataFim: new Date('2021-03-31'),
+        responsavel: 'José',
+        status: 'Em andamento'
+      },
     ];
   }
 
-  applyFilter() {
-    if (this.searchText) {
-      this.metas = this.metas.filter(meta =>
-        meta.nomeMeta.toLowerCase().includes(this.searchText.toLowerCase()) ||
-        meta.meta.toLowerCase().includes(this.searchText.toLowerCase())
-      );
-    } else {
-      this.metas = [
-        { nomeMeta: 'Trilha FrontEnd', meta: 'Dev Full Stack Jr', dataInicio: new Date('2023-01-01'), dataFim: new Date('2023-01-31') },
-        { nomeMeta: 'Trilha BackEnd', meta: 'BackEnd Jr', dataInicio: new Date('2023-02-01'), dataFim: new Date('2023-02-28') },
-        { nomeMeta: 'Angular Js 15', meta: 'Especializar em Angular', dataInicio: new Date('2023-03-01'), dataFim: new Date('2023-03-31') },
-      ];
-    }
-  }
+  // applyFilter() {
+  //   if (this.searchText) {
+  //     this.metas = this.metas.filter(meta =>
+  //       meta.nomeMeta.toLowerCase().includes(this.searchText.toLowerCase()) ||
+  //       meta.meta.toLowerCase().includes(this.searchText.toLowerCase())
+  //     );
+  //   } else {
+  //     this.metas = [];
+  //   }
+  // }
 
   ngOnInit(): void { }
 
@@ -54,5 +71,7 @@ interface Meta {
   meta: string;
   dataInicio: Date;
   dataFim: Date;
+  responsavel: string;
+  status: string;
 }
 

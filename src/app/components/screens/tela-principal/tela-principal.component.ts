@@ -14,6 +14,8 @@ export class TelaPrincipalComponent implements OnInit {
   metaEmEdicao: string | null = null;
   metaSalva: boolean = false;
   isPopupVisible: boolean = false;
+  searchText: string = '';
+  originalMetas: any[] = [];
 
   constructor(private formBuilder: FormBuilder, private authService: EndPointService) {
     this.meuFormulario = this.formBuilder.group({
@@ -25,30 +27,31 @@ export class TelaPrincipalComponent implements OnInit {
   }
 
 
-  ngOnInit(): void { 
-    
+  ngOnInit(): void {
     this.authService.selectMetas().subscribe({
-    next: (response) => {
-      if(response.response === 200){
-        this.metaSalva = true;
+      next: (response) => {
+        if (response.response === 200) {
+          this.metaSalva = true;
 
-        response.dados_extras.forEach( (meta: any) => {
-          meta.data_inicio = new Date(meta.data_inicio).toISOString().split('T')[0]
-          meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
-          this.metas.push(meta)
-        });
+          response.dados_extras.forEach((meta: any) => {
+            meta.data_inicio = new Date(meta.data_inicio).toISOString().split('T')[0]
+            meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
+            this.originalMetas.push(meta)
+          });
 
-        console.log(this.metas)
-        console.log(response.dados_extras)
+          this.metas = [...this.originalMetas];
+
+          console.log(this.metas)
+          console.log(response.dados_extras)
+        }
+        else {
+          console.log(response)
+          alert(response.mensagem)
+        }
+      },
+      error: (error) => {
+        console.error('Erro ao cadastrar:', error);
       }
-      else{
-        console.log(response)
-        alert(response.mensagem)
-      }
-    },
-    error: (error) => {
-      console.error('Erro ao cadastrar:', error);
-    }
     });
   }
 
@@ -60,8 +63,19 @@ export class TelaPrincipalComponent implements OnInit {
     this.isPopupVisible = false;
   }
 
-  submitForm() {
+  applyFilter() {
+    if (this.searchText.trim() !== '') {
+      this.metas = this.originalMetas.filter(meta =>
+        meta.titulo_meta.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        meta.descricao.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    } else {
+      this.metas = [...this.originalMetas];
+    }
+  }
 
+
+  submitForm() {
     const data: Data = ({
       titulo_meta: this.meuFormulario.value.titulo_meta,
       descricao: this.meuFormulario.value.descricao,
@@ -73,13 +87,13 @@ export class TelaPrincipalComponent implements OnInit {
     if (this.metaEmEdicao !== null) {
       this.authService.atualizarMeta(this.metaEmEdicao, data).subscribe({
         next: (response) => {
-          if(response.response === 200){
+          if (response.response === 200) {
             console.log('Cadastro realizado com sucesso');
             this.salvar();
             this.closePopup();
             window.location.reload();
           }
-          else{
+          else {
             console.log(response)
             alert(response.mensagem)
           }
@@ -88,18 +102,18 @@ export class TelaPrincipalComponent implements OnInit {
           console.error('Erro ao cadastrar:', error);
         }
       });
-    } 
+    }
     else if (this.metaEmEdicao === null && this.meuFormulario.valid) {
-      
+
       this.authService.criarMeta(data).subscribe({
         next: (response) => {
-          if(response.response === 200){
+          if (response.response === 200) {
             console.log('Cadastro realizado com sucesso');
             this.salvar();
             this.closePopup();
             window.location.reload();
           }
-          else{
+          else {
             console.log(response)
             alert(response.mensagem)
           }
@@ -111,7 +125,7 @@ export class TelaPrincipalComponent implements OnInit {
       const formValues = this.meuFormulario.value;
       this.metas.push(formValues);
     }
-    else{
+    else {
       console.log(data)
     }
   }
@@ -129,7 +143,7 @@ export class TelaPrincipalComponent implements OnInit {
       this.metaEmEdicao = null;
       this.metaSalva = true;
     }
-    else if(this.meuFormulario.valid){
+    else if (this.meuFormulario.valid) {
       this.metas.push(this.meuFormulario.value);
       this.resetForm();
       this.metaEmEdicao = null;
@@ -147,11 +161,11 @@ export class TelaPrincipalComponent implements OnInit {
 
       this.authService.deleteMeta(index).subscribe({
         next: (response) => {
-          if(response.response === 200){
+          if (response.response === 200) {
             console.log(response.mensagem)
             window.location.reload();
           }
-          else{
+          else {
             console.log(response)
             alert(response.mensagem)
           }
@@ -159,7 +173,7 @@ export class TelaPrincipalComponent implements OnInit {
         error: (error) => {
           console.error('Erro ao excluir:', error);
         }
-        });
+      });
       this.resetForm();
 
       if (this.isListaMetasVazia()) {
@@ -173,19 +187,19 @@ export class TelaPrincipalComponent implements OnInit {
     this.metaEmEdicao = null;
   }
 
-  // getProgressBarStyle(progresso: number) {
-  //   if (progresso < 40) {
-  //     return { 'width': progresso + '%', 'background-color': 'red' };
-  //   } else {
-  //     return { 'width': progresso + '%', 'background-color': '#4CAF50' };
-  //   }
-  // }
+  getProgressBarStyle(progresso: number) {
+    if (progresso < 40) {
+      return { 'width': progresso + '%', 'background-color': 'red' };
+    } else {
+      return { 'width': progresso + '%', 'background-color': '#4CAF50' };
+    }
+  }
 }
-export class Meta{
-    titulo_meta: string = '';
-    descricao: string = '';
-    data_inicio: Date = new Date();
-    data_conclusao_prevista: Date = new Date();
-    status: string = 'Pendente';
-    progresso: number = 0;
+export class Meta {
+  titulo_meta: string = '';
+  descricao: string = '';
+  data_inicio: Date = new Date();
+  data_conclusao_prevista: Date = new Date();
+  status: string = 'Pendente';
+  progresso: number = 0;
 }

@@ -61,7 +61,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'telaMetas',
+    path: 'telaEtapas',
     component: TelaMetasComponent
   }
 

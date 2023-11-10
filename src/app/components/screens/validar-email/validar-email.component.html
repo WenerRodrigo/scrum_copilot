@@ -2,9 +2,9 @@
 <div class="container">
     <h2 class="title">Validar Email</h2>
     <form class="form" [formGroup]="validEmailForm" #emailForm="ngForm">
-        <div class="box" [ngClass]="{'error': inputInvalid}">
+        <div class="box">
             <label>Email</label>
-            <input type="email" id="email" name="email" formControlName="email" required placeholder="Digite seu e-mail">
+            <input [ngClass]="{'error': inputInvalid}" type="email" id="email" name="email" formControlName="email" required placeholder="Digite seu e-mail">
         </div>
         <div class="box-button">
             <button class="button" type="submit" [disabled]="inputInvalid"

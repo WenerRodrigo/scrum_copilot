@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ValidarTokenComponent implements OnInit {
 
   identificador_usuario: string = "";
-
+  inputInvalid: boolean = false;
   token: string = "";
   tokenValido: string = "";
   
@@ -47,6 +47,7 @@ export class ValidarTokenComponent implements OnInit {
       this.router.navigateByUrl("/resetSenha?identificador_usuario=" + this.identificador_usuario)
     }
     else{
+      this.inputInvalid = true;
       alert("O Token digitado está incorreto!")
     }
   }

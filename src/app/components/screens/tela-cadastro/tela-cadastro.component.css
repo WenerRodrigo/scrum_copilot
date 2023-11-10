@@ -95,7 +95,7 @@ button:hover {
     background-color: #3c8eb7;
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: 320px) {
     .container {
         margin-top: 100px;
         margin-bottom: 100px;
@@ -103,7 +103,7 @@ button:hover {
 
     .material-symbols-outlined {
         margin-right: 0;
-        top: 10px;
+        top: 5%;
     }
 
     .title {
@@ -111,15 +111,31 @@ button:hover {
     }
 }
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 375px) {
     .container {
         margin-top: 100px;
-        margin-bottom: 160px;
+        margin-bottom: 100px;
     }
 
     .material-symbols-outlined {
         margin-right: 0;
-        top: 10px;
+        top: 6%;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        margin-top: 80px;
+        margin-bottom: 180px;
+    }
+
+    .material-symbols-outlined {
+        margin-right: 0;
+        top: 6%;
     }
 
     .title {
@@ -134,7 +150,7 @@ button:hover {
     }
 
     .material-symbols-outlined {
-        top: 0;
+        top: 6%;
 
     }
 
@@ -143,14 +159,14 @@ button:hover {
     }
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1440px) {
     .container {
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
     .material-symbols-outlined {
-        top: 0;
+        top: 6%;
     }
 
     .title {
