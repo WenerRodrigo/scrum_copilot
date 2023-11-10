@@ -9,21 +9,21 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="meta">Meta:</label>
-                        <input type="text" id="meta" formControlName="meta">
+                        <input type="text" id="meta" formControlName="titulo_meta">
                     </div>
                     <div class="form-group">
                         <label for="nomeMeta">Nome da Sprint:</label>
-                        <input type="text" id="nomeMeta" formControlName="nomeMeta">
+                        <input type="text" id="nomeMeta" formControlName="descricao">
                     </div>
                     <div class="form-group">
                         <label for="dataInicio">Data Início:</label>
-                        <input type="date" id="dataInicio" formControlName="dataInicio">
+                        <input type="date" id="dataInicio" formControlName="data_inicio">
                     </div>
                     <div class="form-group">
                         <label for="dataFim">Data Fim:</label>
-                        <input type="date" id="dataFim" formControlName="dataFim">
+                        <input type="date" id="dataFim" formControlName="data_conclusao_prevista">
                     </div>
-                    <button class="button-form" type="submit">Adicionar</button>
+                    <button class="button-form" (click)="submitForm">Adicionar</button>
                 </div>
             </form>
         </div>
@@ -48,12 +48,13 @@
     </thead>
     <tbody>
         <tr *ngFor="let meta of metas; let i = index">
-            <td>{{ meta.meta }}</td>
-            <td>{{ meta.nomeMeta }}</td>
-            <td>{{ meta.dataInicio | date: 'dd/MM/yyyy' }}</td>
-            <td>{{ meta.dataFim | date: 'dd/MM/yyyy' }}</td>
+            <td style="display: none;">{{ meta.identificador_meta }}</td>
+            <td>{{ meta.titulo_meta }}</td>
+            <td>{{ meta.descricao }}</td>
+            <td>{{ meta.data_inicio | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ meta.data_conclusao_prevista | date: 'dd/MM/yyyy' }}</td>
             <td class="acoes-button">
-                <button class="button-edit" (click)="editar(i)">
+                <button class="button-edit" (click)="editar(meta.identificador_meta)">
                     <span class="material-symbols-outlined">
                         edit
                     </span>
@@ -63,7 +64,7 @@
                         check_circle
                     </span>
                 </button>
-                <button class="button-remove" (click)="remover(i)">
+                <button class="button-remove" (click)="remover(meta.identificador_meta)">
                     <span class="material-symbols-outlined">
                         delete
                     </span>

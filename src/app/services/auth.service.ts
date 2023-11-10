@@ -31,4 +31,20 @@ export class EndPointService {
     return this.http.post<any>(this.baseUrl + 'usuarios/nova_senha' + resetSenhaObj, undefined);
   }
 
+  criarMeta(metaObj: any) {
+    return this.http.put<any>(this.baseUrl + 'sprint/novaMeta', metaObj);
+  }
+
+  atualizarMeta(identificador_meta:string, metaObj: any) {
+    return this.http.post<any>(this.baseUrl + 'sprint/editMeta/' + identificador_meta, metaObj);
+  }
+
+  selectMetas() {
+    return this.http.get<any>(this.baseUrl + 'sprint/getMetas');
+  }
+
+  deleteMeta(identificador_meta:string) {
+    return this.http.delete<any>(this.baseUrl + 'sprint/deleteMeta/' + identificador_meta);
+  }
+
 }
