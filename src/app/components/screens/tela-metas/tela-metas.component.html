@@ -2,7 +2,7 @@
 
 
 <div class="tela-gerenciamento">
-  <h2 class="title">Gerenciamento de Metas</h2>
+  <h2 class="title">Gerenciamento de Etapas</h2>
   <div class="input-box">
     <input type="text" name="search" [(ngModel)]="searchText" (ngModelChange)="applyFilter()"
       placeholder="Buscar metas">
@@ -10,33 +10,37 @@
   </div>
 
   <div class="button_meta">
-    <button (click)="openPopup()">Criar Metas</button>
+    <button (click)="openPopup()">Criar Etapa</button>
   </div>
 
   <div class="popup-container" *ngIf="isPopupVisible">
     <div class="box_container">
         <div class="container">
             <span class="close-button" (click)="closePopup()"><i class="fa-solid fa-circle-xmark"></i></span>
-            <h2 class="title">Metas</h2>
+            <h2 class="title">Etapa</h2>
             <form [formGroup]="meuFormulario" (ngSubmit)="submitForm()">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="meta">Meta:</label>
-                        <input type="text" id="meta" formControlName="titulo_meta">
+                        <label for="meta">Etapa:</label>
+                        <input type="text" id="meta" formControlName="titulo_etapa">
                     </div>
                     <div class="form-group">
                         <label for="descricaoMeta">Descrição:</label>
                         <input type="text" id="descricaoMeta" formControlName="descricao">
                     </div>
                     <div class="form-group">
-                        <label for="dataInicio">Data Início:</label>
-                        <input type="date" id="dataInicio" formControlName="data_inicio">
+                        <label for="dataInicio">Responsável:</label>
+                        <select formControlName="identificador_responsavel">
+                          <option *ngFor="let colaborador of colaboradores" [value]="colaborador.identificador_usuario">
+                            {{colaborador.nome_completo}}
+                          </option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="dataFim">Data Fim:</label>
                         <input type="date" id="dataFim" formControlName="data_conclusao_prevista">
                     </div>
-                    <button class="button-form" (click)="submitForm">Adicionar</button>
+                    <button class="button-form" (click)="submitForm()">Adicionar</button>
                 </div>
             </form>
         </div>

@@ -39,12 +39,20 @@ export class EndPointService {
     return this.http.post<any>(this.baseUrl + 'sprint/editMeta/' + identificador_meta, metaObj);
   }
 
-  selectMetas() {
-    return this.http.get<any>(this.baseUrl + 'sprint/getMetas');
+  selectMetas(identificador_usuario:string, supervisor:boolean) {
+    return this.http.get<any>(this.baseUrl + 'sprint/getMetas?identificador_usuario=' + identificador_usuario + '&supervisor=' + supervisor);
   }
 
   deleteMeta(identificador_meta:string) {
     return this.http.delete<any>(this.baseUrl + 'sprint/deleteMeta/' + identificador_meta);
+  }
+
+  selectEtapas(identificador_meta:string, identificador_usuario:string, supervisor:boolean) {
+    return this.http.get<any>(this.baseUrl + 'sprint/getEtapas?identificador_meta=' + identificador_meta + '&identificador_usuario=' + identificador_usuario + '&supervisor=' + supervisor);
+  }
+
+  criarEtapa(identificador_meta:string, etapaObj:any) {
+    return this.http.put<any>(this.baseUrl + 'sprint/novaEtapa/' + identificador_meta, etapaObj);
   }
 
 }

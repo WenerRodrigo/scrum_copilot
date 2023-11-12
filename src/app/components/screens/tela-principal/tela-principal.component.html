@@ -64,7 +64,7 @@
             <td style="display: none;">{{ meta.identificador_meta }}</td>
             <td>
                 <div class="acoes-button">
-                    <button class="button-visualizar" routerLink="/telaEtapas">
+                    <button class="button-visualizar" (click)="visualizarEtapa(meta.identificador_meta)">
                         <span class="material-symbols-outlined">
                             assignment
                         </span>

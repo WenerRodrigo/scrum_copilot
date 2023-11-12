@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Data } from '@angular/router';
 import { EndPointService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tela-principal',
@@ -16,19 +17,24 @@ export class TelaPrincipalComponent implements OnInit {
   isPopupVisible: boolean = false;
   searchText: string = '';
   originalMetas: any[] = [];
+  identificador_usuario: string;
+  supervisor: boolean;
 
-  constructor(private formBuilder: FormBuilder, private authService: EndPointService) {
+  constructor(private formBuilder: FormBuilder, private authService: EndPointService, private router: Router) {
     this.meuFormulario = this.formBuilder.group({
       titulo_meta: ['', Validators.required],
       descricao: ['', Validators.required],
       data_inicio: ['', Validators.required],
       data_conclusao_prevista: [''],
     })
+
+    this.identificador_usuario = localStorage.getItem('identificador_usuario') || '';
+    this.supervisor = Boolean(localStorage.getItem('supervisor')) || false;
   }
 
 
   ngOnInit(): void {
-    this.authService.selectMetas().subscribe({
+    this.authService.selectMetas(this.identificador_usuario, this.supervisor).subscribe({
       next: (response) => {
         if (response.response === 200) {
           this.metaSalva = true;
@@ -193,6 +199,10 @@ export class TelaPrincipalComponent implements OnInit {
     } else {
       return { 'width': progresso + '%', 'background-color': '#4CAF50' };
     }
+  }
+
+  visualizarEtapa(identificador_meta:string){
+    this.router.navigateByUrl("/telaEtapas?identificador_meta=" + identificador_meta)
   }
 }
 export class Meta {
