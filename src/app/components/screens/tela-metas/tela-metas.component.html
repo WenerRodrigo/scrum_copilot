@@ -3,6 +3,46 @@
 
 <div class="tela-gerenciamento">
   <h2 class="title">Gerenciamento de Metas</h2>
+  <div class="input-box">
+    <input type="text" name="search" [(ngModel)]="searchText" (ngModelChange)="applyFilter()"
+      placeholder="Buscar metas">
+    <span class="icon_input"><i class="fa-solid fa-magnifying-glass"></i></span>
+  </div>
+
+  <div class="button_meta">
+    <button (click)="openPopup()">Criar Metas</button>
+  </div>
+
+  <div class="popup-container" *ngIf="isPopupVisible">
+    <div class="box_container">
+        <div class="container">
+            <span class="close-button" (click)="closePopup()"><i class="fa-solid fa-circle-xmark"></i></span>
+            <h2 class="title">Metas</h2>
+            <form [formGroup]="meuFormulario" (ngSubmit)="submitForm()">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="meta">Meta:</label>
+                        <input type="text" id="meta" formControlName="titulo_meta">
+                    </div>
+                    <div class="form-group">
+                        <label for="descricaoMeta">Descrição:</label>
+                        <input type="text" id="descricaoMeta" formControlName="descricao">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataInicio">Data Início:</label>
+                        <input type="date" id="dataInicio" formControlName="data_inicio">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataFim">Data Fim:</label>
+                        <input type="date" id="dataFim" formControlName="data_conclusao_prevista">
+                    </div>
+                    <button class="button-form" (click)="submitForm">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
   <table class="metas-table">
     <thead>
       <tr>
@@ -23,17 +63,19 @@
         <td>{{ meta.dataFim | date: 'dd/MM/yyyy' }}</td>
         <td>{{ meta.responsavel }}</td>
         <td>{{ meta.status }}</td>
-        <td class="acoes-button">
-          <button class="button-edit" (click)="editar(meta)">
-            <span class="material-symbols-outlined">
-              edit
-            </span>
-          </button>
-          <button class="button-remove" (click)="remover(i)">
-            <span class="material-symbols-outlined">
-              delete
-            </span>
-          </button>
+        <td>
+          <div class="acoes-button">
+            <button class="button-edit" (click)="editar(meta)">
+              <span class="material-symbols-outlined">
+                edit
+              </span>
+            </button>
+            <button class="button-remove" (click)="remover(i)">
+              <span class="material-symbols-outlined">
+                delete
+              </span>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
