@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TelaNavigationComponent implements OnInit {
 
-  constructor() { }
+  nome_usuario: string;
+
+  constructor() {
+    const nome_usuario = localStorage.getItem('nome_usuario');
+    this.nome_usuario = nome_usuario || '';
+   }
 
   ngOnInit(): void {
   }

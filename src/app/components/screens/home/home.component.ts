@@ -35,8 +35,13 @@ export class HomeComponent implements OnInit {
       this.auth.login(this.loginForm.value).subscribe({
         next: (response) => {
           if(response.response === 200){
-            localStorage.setItem('userEmail', this.loginForm.get('email')!.value);
             console.log(response);
+            console.log(response.dados_extas)
+            localStorage.setItem('email', response.dados_extras.email || "");
+            localStorage.setItem('identificador_usuario', response.dados_extras.identificador_usuario || "");
+            localStorage.setItem('nome_usuario', response.dados_extras.nome_completo || "");
+            localStorage.setItem('supervisor', response.dados_extras.supervisor || "");
+            
             this.router.navigateByUrl("/telaDashboard")
           }
           else{
