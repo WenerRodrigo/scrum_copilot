@@ -9,11 +9,8 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 })
 export class TelaDashboardComponent implements OnInit {
   porcentagemConcluida: number = 0
-  userEmail: string;
 
   constructor() {
-    const storedEmail = localStorage.getItem('userEmail');
-    this.userEmail = storedEmail || '';
   }
 
   ngOnInit(): void {
