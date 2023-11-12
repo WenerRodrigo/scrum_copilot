@@ -4,7 +4,7 @@
     <form class="form" [formGroup]="validToken">
         <div class="box">
             <label>Token</label>
-            <input [ngClass]="{'error': inputInvalid}" type="text" name="tokenValido" formControlName="tokenValido" placeholder="Digite o token">
+            <input type="text" name="tokenValido" formControlName="tokenValido" placeholder="Digite o token">
         </div>
         <div class="box-button">
             <button class="button" type="submit" (click)="validarToken()">Enviar</button>
