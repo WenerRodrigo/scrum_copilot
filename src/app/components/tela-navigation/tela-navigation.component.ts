@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tela-navigation.component.css']
 })
 export class TelaNavigationComponent implements OnInit {
-
-  constructor() { }
+  userEmail: string;
+  constructor() {
+    const storedEmail = localStorage.getItem('userEmail');
+    this.userEmail = storedEmail || '';
+  }
 
   ngOnInit(): void {
   }
