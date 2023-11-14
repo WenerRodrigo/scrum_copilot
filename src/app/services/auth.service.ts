@@ -55,4 +55,8 @@ export class EndPointService {
     return this.http.put<any>(this.baseUrl + 'sprint/novaEtapa/' + identificador_meta, etapaObj);
   }
 
+  deleteEtapa(identificador_etapa:string) {
+    return this.http.delete<any>(this.baseUrl + 'sprint/deleteEtapa/' + identificador_etapa);
+  }
+
 }

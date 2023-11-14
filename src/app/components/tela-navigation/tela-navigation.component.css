@@ -20,6 +20,18 @@
     
 }
 
+.title_login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+
+} 
+
 .user-info {
     display: flex;
     align-items: center;

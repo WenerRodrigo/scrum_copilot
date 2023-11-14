@@ -40,13 +40,12 @@
                         <label for="dataFim">Data Fim:</label>
                         <input type="date" id="dataFim" formControlName="data_conclusao_prevista">
                     </div>
-                    <button class="button-form" (click)="submitForm()">Adicionar</button>
+                    <button class="button-form" (click)="submitForm">Adicionar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
   <table class="metas-table">
     <thead>
       <tr>
@@ -61,6 +60,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let meta of metas; let i = index;">
+        <td style="display: none;">{{ meta.identificador_etapa }}</td>
         <td>{{ meta.nomeMeta }}</td>
         <td>{{ meta.meta }}</td>
         <td>{{ meta.dataInicio | date: 'dd/MM/yyyy' }}</td>
@@ -69,12 +69,12 @@
         <td>{{ meta.status }}</td>
         <td>
           <div class="acoes-button">
-            <button class="button-edit" (click)="editar(meta)">
+            <button class="button-edit" (click)="editarEtapa( meta.identificador_etapa)">
               <span class="material-symbols-outlined">
                 edit
               </span>
             </button>
-            <button class="button-remove" (click)="remover(i)">
+            <button class="button-remove" (click)="removerEtapa( meta.identificador_etapa)">
               <span class="material-symbols-outlined">
                 delete
               </span>

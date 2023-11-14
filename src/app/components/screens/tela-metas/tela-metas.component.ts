@@ -21,6 +21,7 @@ export class TelaMetasComponent implements OnInit {
   identificador_meta: string = '';
   identificador_usuario: string;
   supervisor: boolean;
+etapa: any;
 
   constructor( private formBuilder: FormBuilder, private authService: EndPointService, private route: ActivatedRoute) {
     this.meuFormulario = this.formBuilder.group({
@@ -32,7 +33,7 @@ export class TelaMetasComponent implements OnInit {
 
     this.colaboradores = [
       {identificador_usuario: '00000000-0000-0000-0000-000000000000', nome_completo: 'Nenhum'},
-      {identificador_usuario: '5430F498-F28E-432B-882D-45592291B57A', nome_completo: 'João Vitor'},
+      {identificador_usuario: '5430F498-F28E-432B-882D-45592291B57A', nome_completo: 'Wener'},
       {identificador_usuario: 'E3D5BB9A-3C93-433A-93BF-40166F37150D', nome_completo: 'RAPAZ'}
     ];
 
@@ -53,57 +54,53 @@ export class TelaMetasComponent implements OnInit {
   }
 
   submitForm() {
-    const data: Data = ({
+    const data: Data = {
       titulo_etapa: this.meuFormulario.value.titulo_etapa,
       descricao: this.meuFormulario.value.descricao,
       identificador_responsavel: this.meuFormulario.value.identificador_responsavel,
       data_conclusao_prevista: this.meuFormulario.value.data_conclusao_prevista
-    })
-    console.log(data)
-
-    if (this.metaEmEdicao !== null) {
+    };
+  
+    if (this.metaEmEdicao) {
       this.authService.criarEtapa(this.identificador_meta, data).subscribe({
         next: (response) => {
           if (response.response === 200) {
             console.log('Cadastro realizado com sucesso');
             this.closePopup();
             window.location.reload();
-          }
-          else {
-            console.log(response)
-            alert(response.mensagem)
+          } else {
+            console.log(response);
+            alert(response.mensagem);
           }
         },
         error: (error) => {
           console.error('Erro ao cadastrar:', error);
         }
       });
-    }
-    else if (this.metaEmEdicao === null && this.meuFormulario.valid) {
-
+    } else if (this.metaEmEdicao === null && this.meuFormulario.valid) {
       this.authService.criarEtapa(this.identificador_meta, data).subscribe({
         next: (response) => {
           if (response.response === 200) {
             console.log('Cadastro realizado com sucesso');
             this.closePopup();
             window.location.reload();
-          }
-          else {
-            console.log(response)
-            alert(response.mensagem)
+  
+
+            this.metas = [...this.metas, response.novaEtapa];
+          } else {
+            console.log(response);
+            alert(response.mensagem);
           }
         },
         error: (error) => {
           console.error('Erro ao cadastrar:', error);
         }
       });
-      const formValues = this.meuFormulario.value;
-      this.metas.push(formValues);
-    }
-    else {
-      console.log(data)
+    } else {
+      console.log(data);
     }
   }
+  
 
 
   applyFilter() {
@@ -125,6 +122,7 @@ export class TelaMetasComponent implements OnInit {
           // this.metaSalva = true;
 
           response.dados_extras.forEach((meta: any) => {
+            console.log(meta)
             // meta.data_inicio = new Date(meta.data_inicio).toISOString().split('T')[0]
             // meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
             this.originalMetas.push(meta)
@@ -136,7 +134,7 @@ export class TelaMetasComponent implements OnInit {
           console.log(response.dados_extras)
         }
         else {
-          console.log(response)
+          console.log('erro na resposta',response)
           alert(response.mensagem)
         }
       },
@@ -146,20 +144,35 @@ export class TelaMetasComponent implements OnInit {
     });
   }
 
-  editar(meta: Meta) {
-    this.metaEmEdicao = meta.nomeMeta;
+  editarEtapa(index: string) {
+    this.metaEmEdicao = index;
+    this.openPopup();
   }
 
-  remover(index: number) {
-    if (confirm('Deseja realmente remover a meta?')) {
-      this.metas.splice(index, 1);
-    }
+  removerEtapa(index: string) {
+    this.authService.deleteEtapa(index).subscribe({
+      next: (response) => {
+        if (response.response === 200) {
+          console.log('Meta deletada com sucesso');
+          //window.location.reload();
+          this.metas = this.metas.filter(meta => meta.identificador_etapa !== index);
+        }
+        else {
+          console.log(response)
+          alert(response.mensagem)
+        }
+      },
+      error: (error) => {
+        console.error('Erro ao deletar:', error);
+      }
+    });
   }
 }
 
 
 
 interface Meta {
+identificador_etapa: string;
   nomeMeta: string;
   meta: string;
   dataInicio: Date;
