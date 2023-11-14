@@ -21,9 +21,9 @@ export class TelaMetasComponent implements OnInit {
   identificador_meta: string = '';
   identificador_usuario: string;
   supervisor: boolean;
-etapa: any;
+  etapa: any;
 
-  constructor( private formBuilder: FormBuilder, private authService: EndPointService, private route: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private authService: EndPointService, private route: ActivatedRoute) {
     this.meuFormulario = this.formBuilder.group({
       titulo_etapa: ['', Validators.required],
       descricao: ['', Validators.required],
@@ -31,16 +31,19 @@ etapa: any;
       data_conclusao_prevista: [''],
     });
 
+    this.identificador_usuario = localStorage.getItem('identificador_usuario') || '';
+    this.supervisor = Boolean(localStorage.getItem('supervisor')) || false;
+
     this.colaboradores = [
-      {identificador_usuario: '00000000-0000-0000-0000-000000000000', nome_completo: 'Nenhum'},
-      {identificador_usuario: '5430F498-F28E-432B-882D-45592291B57A', nome_completo: 'Wener'},
-      {identificador_usuario: 'E3D5BB9A-3C93-433A-93BF-40166F37150D', nome_completo: 'RAPAZ'}
+      { identificador_usuario: '00000000-0000-0000-0000-000000000000', nome_completo: 'Nenhum' },
+      { identificador_usuario: '5430F498-F28E-432B-882D-45592291B57A', nome_completo: 'Wener' },
+      { identificador_usuario: 'E3D5BB9A-3C93-433A-93BF-40166F37150D', nome_completo: 'RAPAZ' }
     ];
 
-    this.route.queryParams.subscribe( params =>{
+    this.route.queryParams.subscribe(params => {
       this.identificador_meta = params['identificador_meta'];
     })
-    
+
     this.identificador_usuario = localStorage.getItem('identificador_usuario') || '';
     this.supervisor = Boolean(localStorage.getItem('supervisor')) || false;
   }
@@ -58,9 +61,11 @@ etapa: any;
       titulo_etapa: this.meuFormulario.value.titulo_etapa,
       descricao: this.meuFormulario.value.descricao,
       identificador_responsavel: this.meuFormulario.value.identificador_responsavel,
-      data_conclusao_prevista: this.meuFormulario.value.data_conclusao_prevista
+      // data_conclusao: this.meuFormulario.value.data_conclusao,
+      data_conclusao_prevista: this.meuFormulario.value.data_conclusao_prevista,
+      status: 'Em Andamento', 
     };
-  
+
     if (this.metaEmEdicao) {
       this.authService.criarEtapa(this.identificador_meta, data).subscribe({
         next: (response) => {
@@ -69,7 +74,7 @@ etapa: any;
             this.closePopup();
             window.location.reload();
           } else {
-            console.log(response);
+            console.log('aqui', response);
             alert(response.mensagem);
           }
         },
@@ -84,7 +89,7 @@ etapa: any;
             console.log('Cadastro realizado com sucesso');
             this.closePopup();
             window.location.reload();
-  
+
 
             this.metas = [...this.metas, response.novaEtapa];
           } else {
@@ -100,10 +105,11 @@ etapa: any;
       console.log(data);
     }
   }
-  
+
 
 
   applyFilter() {
+
     if (this.searchText.trim() !== '') {
       this.metas = this.originalMetas.filter(meta =>
         meta.titulo_meta.toLowerCase().includes(this.searchText.toLowerCase()) ||
@@ -115,26 +121,22 @@ etapa: any;
   }
 
 
-  ngOnInit(): void { 
-    this.authService.selectEtapas(this.identificador_meta, this.identificador_usuario, this.supervisor).subscribe({
+  ngOnInit(): void {
+    this.authService.getEtapas(this.identificador_meta, this.identificador_usuario, this.supervisor).subscribe({
       next: (response) => {
         if (response.response === 200) {
-          // this.metaSalva = true;
-
+          //this.metaSalva = true;
           response.dados_extras.forEach((meta: any) => {
-            console.log(meta)
-            // meta.data_inicio = new Date(meta.data_inicio).toISOString().split('T')[0]
-            // meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
+            meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
             this.originalMetas.push(meta)
           });
 
           this.metas = [...this.originalMetas];
 
-          console.log(this.metas)
           console.log(response.dados_extras)
         }
         else {
-          console.log('erro na resposta',response)
+          console.log('erro na resposta', response)
           alert(response.mensagem)
         }
       },
@@ -144,40 +146,47 @@ etapa: any;
     });
   }
 
+  encontrarNomeResponsavel(identificador: string): string {
+    const colaborador = this.colaboradores.find(c => c.identificador_usuario === identificador);
+    return colaborador ? colaborador.nome_completo : '';
+  }
+
   editarEtapa(index: string) {
     this.metaEmEdicao = index;
     this.openPopup();
   }
 
   removerEtapa(index: string) {
-    this.authService.deleteEtapa(index).subscribe({
-      next: (response) => {
-        if (response.response === 200) {
-          console.log('Meta deletada com sucesso');
-          //window.location.reload();
-          this.metas = this.metas.filter(meta => meta.identificador_etapa !== index);
+    if (confirm('Deseja realmente remover a meta?')) {
+      this.authService.deleteEtapa(index).subscribe({
+        next: (response) => {
+          if (response.response === 200) {
+            //alert('Deseja realmente deletar a meta?');
+            //window.location.reload();
+            this.metas = this.metas.filter(meta => meta.identificador_etapa !== index);
+          }
+          else {
+            console.log(response)
+            alert(response.mensagem)
+          }
+        },
+        error: (error) => {
+          console.error('Erro ao deletar:', error);
         }
-        else {
-          console.log(response)
-          alert(response.mensagem)
-        }
-      },
-      error: (error) => {
-        console.error('Erro ao deletar:', error);
-      }
-    });
+      });
+    }
   }
 }
 
 
 
 interface Meta {
-identificador_etapa: string;
-  nomeMeta: string;
-  meta: string;
-  dataInicio: Date;
-  dataFim: Date;
-  responsavel: string;
+  identificador_etapa: string;
+  titulo_etapa: string;
+  descricao: string;
+  data_conclusao:Date;
+  data_conclusao_prevista: Date;
+  identificador_responsavel: string;
   status: string;
 }
 

@@ -23,7 +23,7 @@ import { TelaNavigationComponent } from './components/tela-navigation/tela-navig
 import { TelaMetasComponent } from './components/screens/tela-metas/tela-metas.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatGridListModule} from '@angular/material/grid-list';
-
+import { format } from 'date-fns'
 
 
 @NgModule({
@@ -55,6 +55,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatCardModule,
     MatProgressSpinnerModule,
     MatGridListModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

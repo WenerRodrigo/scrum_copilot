@@ -94,6 +94,13 @@ a {
     padding: 10px;
     color: #887f7f;
     cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+a:hover {
+    color: blue;
+
 }
 
 .title {

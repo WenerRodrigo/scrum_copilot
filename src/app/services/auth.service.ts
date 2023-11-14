@@ -59,4 +59,8 @@ export class EndPointService {
     return this.http.delete<any>(this.baseUrl + 'sprint/deleteEtapa/' + identificador_etapa);
   }
 
+  getEtapas(identificador_meta:string, identificador_usuario: string, supervisor:boolean) {
+    return this.http.get<any>(this.baseUrl + 'sprint/getEtapas?identificador_meta=' + identificador_meta + '&identificador_usuario=' + identificador_usuario + '&supervisor=' + supervisor);
+  }
+
 }
