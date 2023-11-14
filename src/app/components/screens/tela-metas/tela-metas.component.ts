@@ -56,6 +56,15 @@ export class TelaMetasComponent implements OnInit {
     this.isPopupVisible = false;
   }
 
+  getProgressBarStyle(progresso: number) {
+    if (progresso < 40) {
+      return { 'width': progresso + '%', 'background-color': 'red' };
+    } else {
+      return { 'width': progresso + '%', 'background-color': '#4CAF50' };
+    }
+  }
+
+
   submitForm() {
     const data: Data = {
       titulo_etapa: this.meuFormulario.value.titulo_etapa,
@@ -63,7 +72,7 @@ export class TelaMetasComponent implements OnInit {
       identificador_responsavel: this.meuFormulario.value.identificador_responsavel,
       // data_conclusao: this.meuFormulario.value.data_conclusao,
       data_conclusao_prevista: this.meuFormulario.value.data_conclusao_prevista,
-      status: 'Em Andamento', 
+      status: 'Em Andamento',
     };
 
     if (this.metaEmEdicao) {
@@ -146,10 +155,10 @@ export class TelaMetasComponent implements OnInit {
     });
   }
 
-  encontrarNomeResponsavel(identificador: string): string {
-    const colaborador = this.colaboradores.find(c => c.identificador_usuario === identificador);
-    return colaborador ? colaborador.nome_completo : '';
-  }
+  // encontrarNomeResponsavel(identificador: string): string {
+  //   const colaborador = this.colaboradores.find(c => c.identificador_usuario === identificador);
+  //   return colaborador ? colaborador.nome_completo : 'nenhum';
+  // }
 
   editarEtapa(index: string) {
     this.metaEmEdicao = index;
@@ -184,9 +193,11 @@ interface Meta {
   identificador_etapa: string;
   titulo_etapa: string;
   descricao: string;
-  data_conclusao:Date;
+  data_conclusao: Date;
   data_conclusao_prevista: Date;
   identificador_responsavel: string;
+  progresso: number;
+  impedimentos: string;
   status: string;
 }
 

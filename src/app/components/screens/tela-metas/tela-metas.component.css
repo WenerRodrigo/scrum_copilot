@@ -274,7 +274,7 @@ label {
 }
 
 .button-edit {
-    width: 35%;
+    width: 45%;
     height: 30px;
     border: none;
     border-radius: 5px;
@@ -298,7 +298,7 @@ label {
 } */
 
 .button-remove {
-    width: 35%;
+    width: 45%;
     height: 30px;
     border: none;
     border-radius: 5px;
@@ -310,7 +310,7 @@ label {
 }
 
 
-.button-visualizar {
+/* .button-visualizar {
     width: 30%;
     height: 30px;
     border: none;
@@ -321,7 +321,7 @@ label {
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
 
-}
+} */
 
 @media (min-width: 768px) {
 

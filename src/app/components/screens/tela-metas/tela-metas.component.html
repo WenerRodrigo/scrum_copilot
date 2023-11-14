@@ -51,11 +51,13 @@
   <table class="metas-table">
     <thead>
       <tr>
-        <th>Nome da Sprint</th>
-        <th>Meta</th>
+        <th>Nome da Etapa</th>
+        <th>Etapa</th>
         <!-- <th>Data Início</th> -->
         <th>Data Fim</th>
         <th>Responável</th>
+        <th>Progresso</th>
+        <th>Impedimentos</th>
         <th>Status</th>
         <th>Ações</th>
       </tr>
@@ -71,7 +73,15 @@
         <td>{{ meta.descricao }}</td>
         <!-- <td>{{ meta.data_conclusao | date: 'dd/MM/yyyy' }}</td> -->
         <td>{{ meta.data_conclusao_prevista | date: 'dd/MM/yyyy' }}</td>
-        <td>{{ encontrarNomeResponsavel(meta.identificador_responsavel) }}</td>
+        <td>{{ meta.identificador_responsavel }}</td>
+        <td>
+          <div class="progress-container">
+              <div class="progress-bar" [ngStyle]="getProgressBarStyle(meta.progresso)">
+                  {{ meta.progresso }}%
+              </div>
+          </div>
+      </td>
+        <td>{{ meta.impedimentos }}</td>
         <td>{{ meta.status }}</td>
         <td>
           <div class="acoes-button">
