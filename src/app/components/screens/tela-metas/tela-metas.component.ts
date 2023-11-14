@@ -199,6 +199,7 @@ interface Meta {
   progresso: number;
   impedimentos: string;
   status: string;
+  nome_completo: string;
 }
 
 

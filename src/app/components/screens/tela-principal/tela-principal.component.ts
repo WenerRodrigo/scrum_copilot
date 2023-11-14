@@ -95,8 +95,10 @@ export class TelaPrincipalComponent implements OnInit {
         next: (response) => {
           if (response.response === 200) {
             console.log('Cadastro realizado com sucesso');
-            this.salvar();
+            // this.salvar();
             this.closePopup();
+            // const formValues = this.meuFormulario.value;
+            // this.metas.push(formValues);
             window.location.reload();
           }
           else {
@@ -115,8 +117,10 @@ export class TelaPrincipalComponent implements OnInit {
         next: (response) => {
           if (response.response === 200) {
             console.log('Cadastro realizado com sucesso');
-            this.salvar();
+            // this.salvar();
             this.closePopup();
+            // const formValues = this.meuFormulario.value;
+            // this.metas.push(formValues);
             window.location.reload();
           }
           else {
@@ -128,8 +132,6 @@ export class TelaPrincipalComponent implements OnInit {
           console.error('Erro ao cadastrar:', error);
         }
       });
-      const formValues = this.meuFormulario.value;
-      this.metas.push(formValues);
     }
     else {
       console.log(data)
@@ -150,7 +152,7 @@ export class TelaPrincipalComponent implements OnInit {
       this.metaSalva = true;
     }
     else if (this.meuFormulario.valid) {
-      this.metas.push(this.meuFormulario.value);
+      // this.metas.push(this.meuFormulario.value);
       this.resetForm();
       this.metaEmEdicao = null;
       this.metaSalva = true;
