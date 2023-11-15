@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Data } from '@angular/router';
 import { EndPointService } from 'src/app/services/auth.service';
@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './tela-metas.component.html',
   styleUrls: ['./tela-metas.component.css']
 })
+
+
 
 export class TelaMetasComponent implements OnInit {
   meuFormulario!: FormGroup;
@@ -22,13 +24,24 @@ export class TelaMetasComponent implements OnInit {
   identificador_usuario: string;
   supervisor: boolean;
   etapa: any;
+  textareaElement: HTMLInputElement | any;
+  event: HTMLTextAreaElement | any;
 
-  constructor(private formBuilder: FormBuilder, private authService: EndPointService, private route: ActivatedRoute) {
+
+  // textArea
+  @ViewChild('textareaElement') set content(content: ElementRef | any) {
+    this.textareaElement = content;
+    this.adjustTextareaHeight();
+  }
+
+
+  constructor(private formBuilder: FormBuilder, private authService: EndPointService, private route: ActivatedRoute, private renderer: Renderer2) {
     this.meuFormulario = this.formBuilder.group({
       titulo_etapa: ['', Validators.required],
       descricao: ['', Validators.required],
       identificador_responsavel: ['', Validators.required],
       data_conclusao_prevista: [''],
+      
     });
 
     this.identificador_usuario = localStorage.getItem('identificador_usuario') || '';
@@ -36,8 +49,7 @@ export class TelaMetasComponent implements OnInit {
 
     this.colaboradores = [
       { identificador_usuario: '00000000-0000-0000-0000-000000000000', nome_completo: 'Nenhum' },
-      { identificador_usuario: '5430F498-F28E-432B-882D-45592291B57A', nome_completo: 'Wener' },
-      { identificador_usuario: 'E3D5BB9A-3C93-433A-93BF-40166F37150D', nome_completo: 'RAPAZ' }
+      { identificador_usuario: '31E78D23-8C3C-4F3A-9AD7-AE2CB4EF3171', nome_completo: 'Wener' },
     ];
 
     this.route.queryParams.subscribe(params => {
@@ -46,6 +58,26 @@ export class TelaMetasComponent implements OnInit {
 
     this.identificador_usuario = localStorage.getItem('identificador_usuario') || '';
     this.supervisor = Boolean(localStorage.getItem('supervisor')) || false;
+  }
+  
+
+  // textArea
+  ngAfterViewInit(): void {
+    this.adjustTextareaHeight();
+  }
+
+  // textArea
+  @HostListener('input', ['$event.target'])
+  onInput(textarea: HTMLTextAreaElement): void {
+    this.adjustTextareaHeight();
+  }
+   
+  // textArea
+  adjustTextareaHeight(): void {
+    const textareaElement = this.textareaElement.nativeElement as HTMLTextAreaElement;
+    textareaElement.style.overflow = 'hidden';
+    textareaElement.style.height = '65px';
+    textareaElement.style.height = `${textareaElement.scrollHeight}px`;
   }
 
   openPopup() {
@@ -56,6 +88,8 @@ export class TelaMetasComponent implements OnInit {
     this.isPopupVisible = false;
   }
 
+
+  //Barra de Progresso
   getProgressBarStyle(progresso: number) {
     if (progresso < 40) {
       return { 'width': progresso + '%', 'background-color': 'red' };
@@ -72,18 +106,21 @@ export class TelaMetasComponent implements OnInit {
       identificador_responsavel: this.meuFormulario.value.identificador_responsavel,
       // data_conclusao: this.meuFormulario.value.data_conclusao,
       data_conclusao_prevista: this.meuFormulario.value.data_conclusao_prevista,
+      progresso: +this.meuFormulario.value.progresso || 0,
+      impedimentos: this.meuFormulario.value.impedimentos || '',
       status: 'Em Andamento',
     };
 
+
     if (this.metaEmEdicao) {
-      this.authService.criarEtapa(this.identificador_meta, data).subscribe({
+      this.authService.editarEtapa(this.identificador_meta, data).subscribe({
         next: (response) => {
           if (response.response === 200) {
             console.log('Cadastro realizado com sucesso');
             this.closePopup();
             window.location.reload();
           } else {
-            console.log('aqui', response);
+            console.log(response);
             alert(response.mensagem);
           }
         },
@@ -116,9 +153,9 @@ export class TelaMetasComponent implements OnInit {
   }
 
 
-
+  //Campo de pesquisa
   applyFilter() {
-
+    console.log(this.searchText)
     if (this.searchText.trim() !== '') {
       this.metas = this.originalMetas.filter(meta =>
         meta.titulo_meta.toLowerCase().includes(this.searchText.toLowerCase()) ||
@@ -127,6 +164,8 @@ export class TelaMetasComponent implements OnInit {
     } else {
       this.metas = [...this.originalMetas];
     }
+
+    console.log(this.metas)
   }
 
 
@@ -143,6 +182,8 @@ export class TelaMetasComponent implements OnInit {
           this.metas = [...this.originalMetas];
 
           console.log(response.dados_extras)
+
+
         }
         else {
           console.log('erro na resposta', response)
@@ -155,13 +196,18 @@ export class TelaMetasComponent implements OnInit {
     });
   }
 
-  // encontrarNomeResponsavel(identificador: string): string {
-  //   const colaborador = this.colaboradores.find(c => c.identificador_usuario === identificador);
-  //   return colaborador ? colaborador.nome_completo : 'nenhum';
-  // }
+  // Converte de number para string o campo responsavél
+  encontrarNomeResponsavel(identificador: string): string {
+    const colaborador = this.colaboradores.find(c => c.identificador_usuario === identificador);
+    return colaborador ? colaborador.nome_completo : 'Wener';
+  }
+
+
 
   editarEtapa(index: string) {
     this.metaEmEdicao = index;
+    this.etapa = this.metas.find(meta => meta.identificador_etapa === index);
+    this.meuFormulario.patchValue(this.etapa);
     this.openPopup();
   }
 

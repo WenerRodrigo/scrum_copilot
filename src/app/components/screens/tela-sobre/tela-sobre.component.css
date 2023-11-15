@@ -460,19 +460,19 @@
     }
 
     .title {
-        font-size: 1.9rem;
+        font-size: 1.7rem;
         align-items: center;
         justify-content: center;
     }
 
     .descricao {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         align-items: center;
         justify-content: center;
     }
 
     .descricao_texto {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
         align-items: center;
         justify-content: center;
     }

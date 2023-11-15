@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "angular-autosize": "^1.0.1",
     "angular-material": "^1.2.5",
     "date-fns": "^2.30.0",
     "ng2-search-filter": "^0.5.1",

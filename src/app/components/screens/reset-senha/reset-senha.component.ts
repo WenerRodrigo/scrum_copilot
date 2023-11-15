@@ -22,9 +22,7 @@ export class ResetSenhaComponent implements OnInit {
     this.resetSenhaForm = this.formBuilder.group({
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
-
-    })
-
+    });
   }
 
   onSubmit() {
@@ -34,8 +32,12 @@ export class ResetSenhaComponent implements OnInit {
     } else {
       console.log("Senha inválida: " + this.resetSenhaForm.value.password)
     }
+    console.log("this.password")
+    console.log(this.password)
+    //this.singIn(this.password)
   }
 
+  
   viewPassword() {
     this.visible = !this.visible;
   }
@@ -48,6 +50,7 @@ export class ResetSenhaComponent implements OnInit {
     this.visible = !this.visible;
   }
 
+  
   ngOnInit(): void {
   }
 }

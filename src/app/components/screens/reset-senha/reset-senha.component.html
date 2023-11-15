@@ -1,7 +1,7 @@
 <app-tela-navigation></app-tela-navigation>
 <div class="container">
     <h2 class="title">Resetar Senha</h2>
-    <form class="form" [formGroup]="resetSenhaForm" (ngSubmit)="onSubmit">
+    <form class="form" [formGroup]="resetSenhaForm" (ngSubmit)="onSubmit()">
         <div class="box">
             <label>Nova senha</label>
             <input type="{{ visible ? 'text' : 'password' }}" formControlName="password" placeholder="Digite sua senha" required >

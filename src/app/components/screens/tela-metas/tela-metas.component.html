@@ -5,9 +5,9 @@
   <h2 class="title">Gerenciamento de Etapas</h2>
   <div class="input-box">
     <input type="text" name="search" [(ngModel)]="searchText" (ngModelChange)="applyFilter()"
-      placeholder="Buscar metas">
+        placeholder="Buscar metas">
     <span class="icon_input"><i class="fa-solid fa-magnifying-glass"></i></span>
-  </div>
+</div>
 
   <div class="button_meta">
     <button (click)="openPopup()">Criar Etapa</button>
@@ -29,6 +29,10 @@
               <input type="text" id="descricaoMeta" formControlName="descricao">
             </div>
             <div class="form-group">
+              <label for="dataFim">Data Fim:</label>
+              <input type="date" id="dataFim" formControlName="data_conclusao_prevista">
+            </div>
+            <div class="form-group">
               <label for="dataInicio">Responsável:</label>
               <select formControlName="identificador_responsavel">
                 <option *ngFor="let colaborador of colaboradores" [value]="colaborador.identificador_usuario">
@@ -37,8 +41,12 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="dataFim">Data Fim:</label>
-              <input type="date" id="dataFim" formControlName="data_conclusao_prevista">
+              <label for="progresso">Progresso:</label>
+              <input type="number" id="progresso" formControlName="progresso">
+            </div>
+            <div class="form-group">
+              <label for="impedimentos">Impedimentos:</label>
+              <input type="text" id="impedimentos" formControlName="impedimentos">
             </div>
             <button class="button-form" (click)="submitForm">Adicionar</button>
           </div>
@@ -53,7 +61,6 @@
       <tr>
         <th>Nome da Etapa</th>
         <th>Etapa</th>
-        <!-- <th>Data Início</th> -->
         <th>Data Fim</th>
         <th>Responável</th>
         <th>Progresso</th>
@@ -65,19 +72,18 @@
     <tbody>
       <tr *ngFor="let meta of metas; let i = index;">
 
-       <!-- <pre>
+        <!-- <pre>
           {{ metas | json}}
         </pre>  -->
         <td style="display: none;">{{ meta.identificador_etapa }}</td>
         <td>{{ meta.titulo_etapa }}</td>
         <td>{{ meta.descricao }}</td>
-        <!-- <td>{{ meta.data_conclusao | date: 'dd/MM/yyyy' }}</td> -->
         <td>{{ meta.data_conclusao_prevista | date: 'dd/MM/yyyy' }}</td>
-        <td>{{ meta.nome_completo }}</td>
+        <td>{{ encontrarNomeResponsavel(meta.identificador_responsavel) }}</td>
         <td>
           <div class="progress-container">
               <div class="progress-bar" [ngStyle]="getProgressBarStyle(meta.progresso)">
-                  {{ meta.progresso }}%
+                  {{ meta.progresso || 0}}%
               </div>
           </div>
       </td>
@@ -100,4 +106,13 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="content_reports">
+    <div class="reports">
+      <h2 class="title_reports">Reports - Relatórios</h2>
+      <textarea #textareaElement (input)="onInput(event)" required>
+      </textarea>
+    </div>
+  </div>
+
 </div>
