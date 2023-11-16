@@ -25,19 +25,27 @@ export class ResetSenhaComponent implements OnInit {
     });
   }
 
+  
   onSubmit() {
     if (this.resetSenhaForm.valid) {
-      const email = this.resetSenhaForm.get('email')?.value;
       const password = this.resetSenhaForm.get('password')?.value;
-    } else {
-      console.log("Senha inválida: " + this.resetSenhaForm.value.password)
+      const confirmPassword = this.resetSenhaForm.get('confirmPassword')?.value;
+      if (password === confirmPassword) {
+        this.authService.resetSenha(password).subscribe(
+          (data) => {
+            console.log(data);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } else {
+        console.log('As senhas não são iguais');
+      }
     }
-    console.log("this.password")
-    console.log(this.password)
-    //this.singIn(this.password)
   }
 
-  
+
   viewPassword() {
     this.visible = !this.visible;
   }
@@ -50,7 +58,7 @@ export class ResetSenhaComponent implements OnInit {
     this.visible = !this.visible;
   }
 
-  
+
   ngOnInit(): void {
   }
 }

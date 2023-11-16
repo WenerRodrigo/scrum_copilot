@@ -280,17 +280,6 @@ label {
     cursor: pointer;
 }
 
-/* .button-save {
-    width: 20%;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    background-color: #10be10;
-    color: #fff;
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
-    cursor: pointer;
-} */
 
 .button-remove {
     width: 35%;
@@ -319,12 +308,4 @@ label {
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
 
-}
-
-@media (min-width: 768px) {
-
-    .acoes-button {
-        width: 100%;
-        gap: 10px;
-    }
 }

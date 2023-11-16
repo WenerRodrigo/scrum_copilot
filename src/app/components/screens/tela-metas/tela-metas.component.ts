@@ -41,6 +41,8 @@ export class TelaMetasComponent implements OnInit {
       descricao: ['', Validators.required],
       identificador_responsavel: ['', Validators.required],
       data_conclusao_prevista: [''],
+      progresso: [''],
+      impedimentos: [''],
       
     });
 
@@ -68,7 +70,7 @@ export class TelaMetasComponent implements OnInit {
 
   // textArea
   @HostListener('input', ['$event.target'])
-  onInput(textarea: HTMLTextAreaElement): void {
+  onInput(_textarea: HTMLTextAreaElement): void {
     this.adjustTextareaHeight();
   }
    
@@ -104,7 +106,6 @@ export class TelaMetasComponent implements OnInit {
       titulo_etapa: this.meuFormulario.value.titulo_etapa,
       descricao: this.meuFormulario.value.descricao,
       identificador_responsavel: this.meuFormulario.value.identificador_responsavel,
-      // data_conclusao: this.meuFormulario.value.data_conclusao,
       data_conclusao_prevista: this.meuFormulario.value.data_conclusao_prevista,
       progresso: +this.meuFormulario.value.progresso || 0,
       impedimentos: this.meuFormulario.value.impedimentos || '',
@@ -158,8 +159,8 @@ export class TelaMetasComponent implements OnInit {
     console.log(this.searchText)
     if (this.searchText.trim() !== '') {
       this.metas = this.originalMetas.filter(meta =>
-        meta.titulo_meta.toLowerCase().includes(this.searchText.toLowerCase()) ||
-        meta.descricao.toLowerCase().includes(this.searchText.toLowerCase())
+        meta.titulo_etapa.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        meta.descricao && meta.descricao.toLowerCase().includes(this.searchText.toLowerCase())
       );
     } else {
       this.metas = [...this.originalMetas];
@@ -178,7 +179,7 @@ export class TelaMetasComponent implements OnInit {
             meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
             this.originalMetas.push(meta)
           });
-
+           
           this.metas = [...this.originalMetas];
 
           console.log(response.dados_extras)

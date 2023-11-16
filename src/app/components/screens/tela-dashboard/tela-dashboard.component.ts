@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-tela-dashboard',
@@ -10,11 +8,10 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 export class TelaDashboardComponent implements OnInit {
   porcentagemConcluida: number = 0
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    const totalPorcentagem = 50;
+    const totalPorcentagem = 90;
 
     const updateProgress = () => {
       if (this.porcentagemConcluida < totalPorcentagem) {
@@ -25,4 +22,5 @@ export class TelaDashboardComponent implements OnInit {
 
     updateProgress();
   }
+  
 }
