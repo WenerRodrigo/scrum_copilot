@@ -26,6 +26,7 @@ export class TelaMetasComponent implements OnInit {
   etapa: any;
   textareaElement: HTMLInputElement | any;
   event: HTMLTextAreaElement | any;
+  aluno: boolean;
 
 
   // textArea
@@ -48,6 +49,7 @@ export class TelaMetasComponent implements OnInit {
 
     this.identificador_usuario = localStorage.getItem('identificador_usuario') || '';
     this.supervisor = Boolean(localStorage.getItem('supervisor')) || false;
+    this.aluno = !this.supervisor;
 
     this.colaboradores = [
       { identificador_usuario: '00000000-0000-0000-0000-000000000000', nome_completo: 'Nenhum' },
@@ -179,7 +181,7 @@ export class TelaMetasComponent implements OnInit {
             meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
             this.originalMetas.push(meta)
           });
-           
+
           this.metas = [...this.originalMetas];
 
           console.log(response.dados_extras)

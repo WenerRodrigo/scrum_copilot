@@ -30,8 +30,9 @@ export class ResetSenhaComponent implements OnInit {
     if (this.resetSenhaForm.valid) {
       const password = this.resetSenhaForm.get('password')?.value;
       const confirmPassword = this.resetSenhaForm.get('confirmPassword')?.value;
+      const token = '';
       if (password === confirmPassword) {
-        this.authService.resetSenha(password).subscribe(
+        this.authService.resetSenha(password, token).subscribe(
           (data) => {
             console.log(data);
           },

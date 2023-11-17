@@ -34,6 +34,7 @@ export class TelaPrincipalComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log('Antes de chamar o serviço');
     this.authService.selectMetas(this.identificador_usuario, this.supervisor).subscribe({
       next: (response) => {
         if (response.response === 200) {

@@ -87,8 +87,8 @@
               </div>
           </div>
       </td>
-        <td>{{ meta.impedimentos  || 'Ainda vou comprar um Livro'}}</td>
-        <td>{{ meta.status }}</td>
+        <td>{{ meta.impedimentos || 'Vou comprar um livro'}}</td>
+        <td>{{ meta.status || 'em andamento'}}</td>
         <td>
           <div class="acoes-button">
             <button class="button-edit" (click)="editarEtapa( meta.identificador_etapa)">

@@ -19,6 +19,10 @@ export class EndPointService {
     return this.http.post<any>(`${this.baseUrl}usuarios/gerarusuario`, signUpObj);
   }
 
+  gerarusuario(signUpObj:any) {
+    return this.http.post<any>(`${this.baseUrl}usuarios/gerarusuario`, signUpObj);
+  }
+
   recuperarEmail(emailObj: string) {
     return this.http.post<any>(this.baseUrl + 'usuarios/recuperarsenha_email/' + emailObj, undefined);
   }
@@ -27,8 +31,9 @@ export class EndPointService {
     return this.http.get<any>(this.baseUrl + 'usuarios/get_token/' + identificador_usuario, undefined);
   }
 
-  resetSenha(resetSenhaObj: string) {
-    return this.http.post<any>(this.baseUrl + 'usuarios/nova_senha' + resetSenhaObj, undefined);
+  resetSenha(password: string, token: string) {
+    const resetSenhaObj = { password, token };
+    return this.http.post<any>(this.baseUrl + 'usuarios/nova_senha', resetSenhaObj);
   }
 
   criarMeta(metaObj: any) {

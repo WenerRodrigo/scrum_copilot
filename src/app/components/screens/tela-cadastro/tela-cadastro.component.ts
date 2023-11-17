@@ -37,7 +37,6 @@ export class TelaCadastroComponent implements OnInit {
       senha: ['', [Validators.required]],
       nome_completo: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
-      aluno: [false],
       supervisor: [false],
       role: [''],
     })
@@ -48,46 +47,34 @@ export class TelaCadastroComponent implements OnInit {
   }
 
   onCreate() {
-    console.log(this.createForm.value);
-    if (this.createForm.valid) {
-      if (this.createForm.value.senha === this.createForm.value.confirmPassword) {
-        console.log('Entrou');
-        const permissions = this.createForm.value.aluno ? ['criar_meta', 'criar_etapa'] : [];
-        const role = this.createForm.value.supervisor ? 'supervisor' : 'aluno'; 
-        this.authService.signUp({
-          senha: this.createForm.value.senha,
-          email: this.createForm.value.email,
-          nome_completo: this.createForm.value.nome_completo,
-          role: role,
-          permissions: permissions,
-        }).subscribe({
-          next: (response) => {
-            console.log('Resposta do servidor:', response);
-            if (response.response === 200) {
-              console.log('Cadastro realizado com sucesso');
-              this.router.navigateByUrl("/home");
-            } else {
-              console.log(response);
-              alert(response.mensagem);
-            }
-          },
-        });
-      } else {
-        alert('As senhas digitadas não são iguais');
-      }
+   if(this.createForm.valid) {
+      this.authService.gerarusuario(this.createForm.value).subscribe({
+        next: (response) => {
+          if(response.response === 200){
+            alert(response.mensagem)
+            this.router.navigateByUrl("/home")
+          }
+          else{
+            alert(response.mensagem)
+            console.log(response)
+          }
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
     } else {
       alert('Preencha os campos obrigatórios.');
     }
   }
 
+
+
   uncheckSupervisor() {
+    console.log('Método uncheckSupervisor() chamado');
     this.createForm.get('supervisor')?.setValue(false);
   }
-  
-  uncheckAluno() {
-    this.createForm.get('aluno')?.setValue(false);
-  }
-  
+
   updateRole(role: string) {
     this.createForm.get('role')?.setValue(role);
   }

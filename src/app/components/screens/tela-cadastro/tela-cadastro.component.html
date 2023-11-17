@@ -8,24 +8,18 @@
         </div>
         <div class="box">
             <label class="box_label">Email</label>
-            <input class="box_input"  type="email" formControlName="email" placeholder="Digite seu e-mail" email>
+            <input class="box_input" type="email" formControlName="email" placeholder="Digite seu e-mail" email>
         </div>
-
         <div class="box-checkbox">
             <label>
-              <input type="checkbox" formControlName="aluno" (change)="updateRole('aluno')" (click)="uncheckSupervisor()"> Aluno
-            </label>
-          </div>
-
-          <div class="box-checkbox">
-            <label>
-              <input type="checkbox" formControlName="supervisor" (change)="updateRole('supervisor')" (click)="uncheckAluno()"> Supervisor
+              <input type="checkbox" formControlName="supervisor" (change)="updateRole('supervisor')"> Supervisor
             </label>
           </div>
 
         <div class="box">
             <label class="box_label">Senha</label>
-            <input class="box_input"  type="{{ visible ? 'text' : 'password' }}" formControlName="senha" placeholder="Digite sua senha">
+            <input class="box_input" type="{{ visible ? 'text' : 'password' }}" formControlName="senha"
+                placeholder="Digite sua senha">
             <span (click)="viewPassword()"
                 [ngClass]="visible ? 'material-symbols-outlined' : 'material-symbols-outlined' ">
                 {{ visible ? 'visibility' : 'visibility_off' }}
@@ -36,7 +30,8 @@
         </div>
         <div class="box">
             <label class="box_label">Confirmação de senha</label>
-            <input class="box_input"  id="inputConfirmPassword" type="{{ closeVisible ? 'text' : 'password' }}" formControlName="confirmPassword" placeholder="Confirme sua senha" type="password">
+            <input class="box_input" id="inputConfirmPassword" type="{{ closeVisible ? 'text' : 'password' }}"
+                formControlName="confirmPassword" placeholder="Confirme sua senha" type="password">
             <span (click)="closePassword()"
                 [ngClass]="closeVisible ? 'material-symbols-outlined' : 'material-symbols-outlined'">
                 {{ closeVisible ? 'visibility' : 'visibility_off' }}
