@@ -138,9 +138,8 @@ export class TelaMetasComponent implements OnInit {
       descricao: this.meuFormulario.value.descricao,
       identificador_responsavel: this.meuFormulario.value.identificador_responsavel,
       data_conclusao_prevista: this.meuFormulario.value.data_conclusao_prevista,
-      progresso: +this.meuFormulario.value.progresso || 0,
-      impedimentos: this.meuFormulario.value.impedimentos || '',
-      status: 'Em Andamento',
+      progresso: this.meuFormulario.value.progresso || 0,
+      impedimentos: this.meuFormulario.value.impedimentos || ''
     };
 
 

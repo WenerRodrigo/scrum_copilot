@@ -23,7 +23,7 @@ export class TelaPrincipalComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private authService: EndPointService, private router: Router) {
     this.meuFormulario = this.formBuilder.group({
       titulo_meta: ['', Validators.required],
-      descricao: ['', Validators.required],
+      descricao: [''],
       data_inicio: ['', Validators.required],
       data_conclusao_prevista: [''],
     })
