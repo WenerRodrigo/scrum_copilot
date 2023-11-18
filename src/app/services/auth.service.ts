@@ -31,8 +31,7 @@ export class EndPointService {
     return this.http.get<any>(this.baseUrl + 'usuarios/get_token/' + identificador_usuario, undefined);
   }
 
-  resetSenha(password: string, token: string) {
-    const resetSenhaObj = { password, token };
+  resetSenha(resetSenhaObj: any) {
     return this.http.post<any>(this.baseUrl + 'usuarios/nova_senha', resetSenhaObj);
   }
 

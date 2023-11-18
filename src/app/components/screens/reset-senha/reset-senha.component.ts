@@ -1,5 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EndPointService } from 'src/app/services/auth.service';
 
 @Injectable({
@@ -17,24 +18,33 @@ export class ResetSenhaComponent implements OnInit {
   visible: boolean = false;
   closeVisible: boolean = false;
   resetSenhaForm: FormGroup;
+  identificador_usuario: string = '';
 
-  constructor(private authService: EndPointService, private formBuilder: FormBuilder) {
+  constructor(private authService: EndPointService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) {
     this.resetSenhaForm = this.formBuilder.group({
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
+  ngOnInit(): void {
+    
+    this.route.queryParams.subscribe( params =>{
+      this.identificador_usuario = params['identificador_usuario']
+    })
+  }
   
   onSubmit() {
     if (this.resetSenhaForm.valid) {
-      const password = this.resetSenhaForm.get('password')?.value;
-      const confirmPassword = this.resetSenhaForm.get('confirmPassword')?.value;
-      const token = '';
+      const password = this.resetSenhaForm.value.password;
+      const confirmPassword = this.resetSenhaForm.value.confirmPassword;
+
+      console.log({password, confirmPassword})
       if (password === confirmPassword) {
-        this.authService.resetSenha(password, token).subscribe(
+        this.authService.resetSenha({identificador_usuario: this.identificador_usuario, nova_senha: password}).subscribe(
           (data) => {
             console.log(data);
+            this.router.navigateByUrl("/home")
           },
           (error) => {
             console.log(error);
@@ -46,7 +56,6 @@ export class ResetSenhaComponent implements OnInit {
     }
   }
 
-
   viewPassword() {
     this.visible = !this.visible;
   }
@@ -57,9 +66,5 @@ export class ResetSenhaComponent implements OnInit {
 
   togglePasswordVisibility() {
     this.visible = !this.visible;
-  }
-
-
-  ngOnInit(): void {
   }
 }
