@@ -72,4 +72,8 @@ export class EndPointService {
     return this.http.get<any>(this.baseUrl + 'sprint/getEtapas?identificador_meta=' + identificador_meta + '&identificador_usuario=' + identificador_usuario + '&supervisor=' + supervisor);
   }
 
+  getColaboradores() {
+    return this.http.get<any>(this.baseUrl + 'usuarios/getColaboradores');
+  }
+
 }

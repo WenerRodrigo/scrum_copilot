@@ -51,11 +51,6 @@ export class TelaMetasComponent implements OnInit {
     this.supervisor = Boolean(localStorage.getItem('supervisor')) || false;
     this.aluno = !this.supervisor;
 
-    this.colaboradores = [
-      { identificador_usuario: '00000000-0000-0000-0000-000000000000', nome_completo: 'Nenhum' },
-      { identificador_usuario: '31E78D23-8C3C-4F3A-9AD7-AE2CB4EF3171', nome_completo: 'Wener' },
-    ];
-
     this.route.queryParams.subscribe(params => {
       this.identificador_meta = params['identificador_meta'];
     })
@@ -63,114 +58,6 @@ export class TelaMetasComponent implements OnInit {
     this.identificador_usuario = localStorage.getItem('identificador_usuario') || '';
     this.supervisor = Boolean(localStorage.getItem('supervisor')) || false;
   }
-  
-
-  // textArea
-  ngAfterViewInit(): void {
-    this.adjustTextareaHeight();
-  }
-
-  // textArea
-  @HostListener('input', ['$event.target'])
-  onInput(_textarea: HTMLTextAreaElement): void {
-    this.adjustTextareaHeight();
-  }
-   
-  // textArea
-  adjustTextareaHeight(): void {
-    const textareaElement = this.textareaElement.nativeElement as HTMLTextAreaElement;
-    textareaElement.style.overflow = 'hidden';
-    textareaElement.style.height = '65px';
-    textareaElement.style.height = `${textareaElement.scrollHeight}px`;
-  }
-
-  openPopup() {
-    this.isPopupVisible = true;
-  }
-
-  closePopup() {
-    this.isPopupVisible = false;
-  }
-
-
-  //Barra de Progresso
-  getProgressBarStyle(progresso: number) {
-    if (progresso < 40) {
-      return { 'width': progresso + '%', 'background-color': 'red' };
-    } else {
-      return { 'width': progresso + '%', 'background-color': '#4CAF50' };
-    }
-  }
-
-
-  submitForm() {
-    const data: Data = {
-      titulo_etapa: this.meuFormulario.value.titulo_etapa,
-      descricao: this.meuFormulario.value.descricao,
-      identificador_responsavel: this.meuFormulario.value.identificador_responsavel,
-      data_conclusao_prevista: this.meuFormulario.value.data_conclusao_prevista,
-      progresso: +this.meuFormulario.value.progresso || 0,
-      impedimentos: this.meuFormulario.value.impedimentos || '',
-      status: 'Em Andamento',
-    };
-
-
-    if (this.metaEmEdicao) {
-      this.authService.editarEtapa(this.identificador_meta, data).subscribe({
-        next: (response) => {
-          if (response.response === 200) {
-            console.log('Cadastro realizado com sucesso');
-            this.closePopup();
-            window.location.reload();
-          } else {
-            console.log(response);
-            alert(response.mensagem);
-          }
-        },
-        error: (error) => {
-          console.error('Erro ao cadastrar:', error);
-        }
-      });
-    } else if (this.metaEmEdicao === null && this.meuFormulario.valid) {
-      this.authService.criarEtapa(this.identificador_meta, data).subscribe({
-        next: (response) => {
-          if (response.response === 200) {
-            console.log('Cadastro realizado com sucesso');
-            this.closePopup();
-            window.location.reload();
-
-
-            this.metas = [...this.metas, response.novaEtapa];
-          } else {
-            console.log(response);
-            alert(response.mensagem);
-          }
-        },
-        error: (error) => {
-          console.error('Erro ao cadastrar:', error);
-        }
-      });
-    } else {
-      console.log(data);
-    }
-  }
-
-
-  //Campo de pesquisa
-  applyFilter() {
-    console.log(this.searchText)
-    if (this.searchText.trim() !== '') {
-      this.metas = this.originalMetas.filter(meta =>
-        meta.titulo_etapa.toLowerCase().includes(this.searchText.toLowerCase()) ||
-        meta.descricao && meta.descricao.toLowerCase().includes(this.searchText.toLowerCase())
-      );
-    } else {
-      this.metas = [...this.originalMetas];
-    }
-
-    console.log(this.metas)
-  }
-
 
   ngOnInit(): void {
     this.authService.getEtapas(this.identificador_meta, this.identificador_usuario, this.supervisor).subscribe({
@@ -197,6 +84,149 @@ export class TelaMetasComponent implements OnInit {
         console.error('Erro ao cadastrar:', error);
       }
     });
+    
+    this.authService.getColaboradores().subscribe({
+      next: (response) => {
+        if (response.response === 200) {
+          //this.metaSalva = true;
+            this.colaboradores.push({identificador_usuario: "00000000-0000-0000-0000-000000000000", nome_completo: "NENHUM"})
+          response.dados_extras.forEach((colaborador: any) => {
+            this.colaboradores.push(colaborador)
+          });
+
+          this.metas = [...this.originalMetas];
+
+          console.log(response.dados_extras)
+
+
+        }
+        else {
+          console.log('erro na resposta', response)
+          alert(response.mensagem)
+        }
+      },
+      error: (error) => {
+        console.error('Erro ao cadastrar:', error);
+      }
+    });
+  }
+  
+
+  // textArea
+  ngAfterViewInit(): void {
+    this.adjustTextareaHeight();
+  }
+
+  // textArea
+  @HostListener('input', ['$event.target'])
+  onInput(_textarea: HTMLTextAreaElement): void {
+    this.adjustTextareaHeight();
+  }
+   
+  // textArea
+  adjustTextareaHeight(): void {
+    const textareaElement = this.textareaElement.nativeElement as HTMLTextAreaElement;
+    textareaElement.style.overflow = 'hidden';
+    textareaElement.style.height = '65px';
+    textareaElement.style.height = `${textareaElement.scrollHeight}px`;
+  }
+
+
+  submitForm() {
+    const data: Data = {
+      titulo_etapa: this.meuFormulario.value.titulo_etapa,
+      descricao: this.meuFormulario.value.descricao,
+      identificador_responsavel: this.meuFormulario.value.identificador_responsavel,
+      data_conclusao_prevista: this.meuFormulario.value.data_conclusao_prevista,
+      progresso: +this.meuFormulario.value.progresso || 0,
+      impedimentos: this.meuFormulario.value.impedimentos || '',
+      status: 'Em Andamento',
+    };
+
+
+    if (this.metaEmEdicao) {
+      this.authService.editarEtapa(this.metaEmEdicao, data).subscribe({
+        next: (response) => {
+          if (response.response === 200) {
+            console.log('Cadastro realizado com sucesso');
+            this.metaEmEdicao = null;
+            this.meuFormulario.reset;
+            this.closePopup();
+            window.location.reload();
+
+          } 
+          else {
+            console.log(response);
+            alert(response.mensagem);
+          }
+        },
+        error: (error) => {
+          console.error('Erro ao cadastrar:', error);
+        }
+      });
+    } else if (this.metaEmEdicao === null && this.meuFormulario.valid) {
+      this.authService.criarEtapa(this.identificador_meta, data).subscribe({
+        next: (response) => {
+          if (response.response === 200) {
+            console.log('Cadastro realizado com sucesso');
+            this.metaEmEdicao = null;
+            this.meuFormulario.reset;
+            this.closePopup();
+            window.location.reload();
+
+
+            this.metas = [...this.metas, response.novaEtapa];
+          } 
+          else {
+            console.log(response);
+            alert(response.mensagem);
+          }
+        },
+        error: (error) => {
+          console.error('Erro ao cadastrar:', error);
+        }
+      });
+    } else {
+      console.log(data);
+    }
+  }
+
+  openPopup() {
+    this.isPopupVisible = true;
+
+    // if(this.metaEmEdicao === null){
+    //   this.meuFormulario.value.identificador_responsavel = this.identificador_usuario;
+    // }
+  }
+
+  closePopup() {
+    this.isPopupVisible = false;
+  }
+
+
+  //Barra de Progresso
+  getProgressBarStyle(progresso: number) {
+    if (progresso < 40) {
+      return { 'width': progresso + '%', 'background-color': 'red' };
+    } else {
+      return { 'width': progresso + '%', 'background-color': '#4CAF50' };
+    }
+  }
+
+
+  //Campo de pesquisa
+  applyFilter() {
+    console.log(this.searchText)
+    if (this.searchText.trim() !== '') {
+      this.metas = this.originalMetas.filter(meta =>
+        meta.titulo_etapa.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        meta.descricao && meta.descricao.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    } else {
+      this.metas = [...this.originalMetas];
+    }
+
+    console.log(this.metas)
   }
 
   // Converte de number para string o campo responsavél
