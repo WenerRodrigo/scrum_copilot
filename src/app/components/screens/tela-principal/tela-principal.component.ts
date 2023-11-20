@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Data } from '@angular/router';
 import { EndPointService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Data } from '@angular/router';
 
 @Component({
   selector: 'app-tela-principal',
@@ -19,8 +18,9 @@ export class TelaPrincipalComponent implements OnInit {
   originalMetas: any[] = [];
   identificador_usuario: string;
   supervisor: boolean;
+  tipo_dashboard: string = "";
 
-  constructor(private formBuilder: FormBuilder, private authService: EndPointService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: EndPointService, private route: ActivatedRoute, private router: Router) {
     this.meuFormulario = this.formBuilder.group({
       titulo_meta: ['', Validators.required],
       descricao: [''],
@@ -30,29 +30,65 @@ export class TelaPrincipalComponent implements OnInit {
 
     this.identificador_usuario = localStorage.getItem('identificador_usuario') || '';
     this.supervisor = Boolean(localStorage.getItem('supervisor')) || false;
+
+    this.route.queryParams.subscribe(params => {
+      this.tipo_dashboard = params['tipo_dashboard'] || null;
+    })
   }
 
 
   ngOnInit(): void {
-    console.log('Antes de chamar o serviço');
     this.authService.selectMetas(this.identificador_usuario, this.supervisor).subscribe({
       next: (response) => {
         if (response.response === 200) {
           this.metaSalva = true;
 
+
+
           response.dados_extras.forEach((meta: any) => {
-            meta.data_inicio = new Date(meta.data_inicio).toISOString().split('T')[0]
-            meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
-            this.originalMetas.push(meta)
+
+            if(this.tipo_dashboard == 'concluidas' && meta.progresso >= 100){
+            
+              meta.data_inicio = new Date(meta.data_inicio).toISOString().split('T')[0]
+              meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
+              this.originalMetas.push(meta)
+
+            }
+            else if(this.tipo_dashboard == 'atraso' && meta.progresso < 100 && new Date(meta.data_conclusao_prevista) < new Date()){
+            
+              meta.data_inicio = new Date(meta.data_inicio).toISOString().split('T')[0]
+              meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
+              this.originalMetas.push(meta)
+        
+            }
+            else if(this.tipo_dashboard == 'pendentes' && meta.progresso == 0 && new Date(meta.data_conclusao_prevista) > new Date()){
+            
+              meta.data_inicio = new Date(meta.data_inicio).toISOString().split('T')[0]
+              meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
+              this.originalMetas.push(meta)
+              
+            }
+            else if(this.tipo_dashboard == 'execucao' && (meta.progresso > 0 && meta.progresso < 100) && new Date(meta.data_conclusao_prevista) > new Date()){
+            
+              meta.data_inicio = new Date(meta.data_inicio).toISOString().split('T')[0]
+              meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
+              this.originalMetas.push(meta)
+              
+            }
+            else if(this.tipo_dashboard == null){
+            
+              meta.data_inicio = new Date(meta.data_inicio).toISOString().split('T')[0]
+              meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
+              this.originalMetas.push(meta)
+              
+            }
           });
 
-          this.metas = [...this.originalMetas];
 
-          console.log(this.metas)
-          console.log(response.dados_extras)
+
+          this.metas = [...this.originalMetas];
         }
         else {
-          console.log(response)
           alert(response.mensagem)
         }
       },
@@ -89,7 +125,6 @@ export class TelaPrincipalComponent implements OnInit {
       data_inicio: this.meuFormulario.value.data_inicio,
       data_conclusao_prevista: this.meuFormulario.value.data_conclusao_prevista
     })
-    console.log(data)
 
     if (this.metaEmEdicao !== null) {
       this.authService.atualizarMeta(this.metaEmEdicao, data).subscribe({
@@ -103,7 +138,6 @@ export class TelaPrincipalComponent implements OnInit {
             window.location.reload();
           }
           else {
-            console.log(response)
             alert(response.mensagem)
           }
         },

@@ -2,17 +2,36 @@
 
 
 <div class="box_caixa">
+
+    <div class="box_metas">
+        <div class="box_elemento">
+            <h2 class="description">Metas Pendentes</h2>
+            <h1 class="qtd_metas" style="color: yellow;">{{pendentes}}</h1>
+            <div class="descricao_box">
+                <span>Quantidade de metas Pendentes</span>
+                <button class="button_detalhes" (click)='openMetas("pendentes")'>Detalhes</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="box_metas">
+        <div class="box_elemento">
+            <h2 class="description">Metas em Execução</h2>
+            <h1 class="qtd_metas" style="color: blue;">{{execucao}}</h1>
+            <div class="descricao_box">
+                <span>Quantidade de metas Execução</span>
+                <button class="button_detalhes" (click)='openMetas("execucao")'>Detalhes</button>
+            </div>
+        </div>
+    </div>
+
     <div class="box_metas">
         <div class="box_elemento">
             <h2 class="description">Metas Concluídas</h2>
-            <div class="progress-circle">
-                <div class="spinner">
-                    <mat-spinner></mat-spinner>
-                </div>
-                <div class="descricao_box">
-                    <span>Quantidade de metas concluidas</span>
-                    <button class="button_detalhes" routerLink="/telaEtapas">Detalhes</button>
-                </div>
+            <h1 class="qtd_metas" style="color: green;">{{concluidas}}</h1>
+            <div class="descricao_box">
+                <span>Quantidade de metas concluidas</span>
+                <button class="button_detalhes" (click)='openMetas("concluidas")'>Detalhes</button>
             </div>
         </div>
     </div>
@@ -20,44 +39,11 @@
     <div class="box_metas">
         <div class="box_elemento">
             <h2 class="description">Metas em Atraso</h2>
-            <div class="progress-circle">
-                <div class="spinner_atraso">
-                    <mat-spinner></mat-spinner>
-                </div>
-                <div class="descricao_box">
-                    <span>Quantidade de metas em Atraso</span>
-                    <button class="button_detalhes" routerLink="/telaEtapas">Detalhes</button>
-                </div>
+            <h1 class="qtd_metas" style="color: red;">{{atraso}}</h1>
+            <div class="descricao_box">
+                <span>Quantidade de metas em Atraso</span>
+                <button class="button_detalhes" (click)='openMetas("atraso")'>Detalhes</button>
             </div>
         </div>
     </div>
-
-    <div class="box_metas">
-        <div class="box_elemento">
-            <h2 class="description">Metas Pendentes</h2>
-            <div class="progress-circle">
-                <div class="spinner_pendente">
-                    <mat-spinner></mat-spinner>
-                </div>
-                <div class="descricao_box">
-                    <span>Quantidade de metas Pendentes</span>
-                    <button class="button_detalhes" routerLink="/telaEtapas">Detalhes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="box_metas">
-        <div class="box_elemento">
-            <h2 class="description">Metas em Andamento</h2>
-            <div class="progress-circle">
-                <div class="spinner_execucao">
-                    <mat-spinner></mat-spinner>
-                </div>
-                <div class="descricao_box">
-                    <span>Quantidade de metas Execução</span>
-                    <button class="button_detalhes" routerLink="/telaEtapas">Detalhes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
