@@ -470,6 +470,25 @@ label {
     border-color: #bfbfbf;
 }
 
+.button_textarea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3c8eb7;
+    border: none;
+    border-radius: 5px;
+    width: 30%;
+    height: 30px;
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 13px;
+
+
+}
+
 
 textarea:is(focus, :valid) {
     padding: 14px;

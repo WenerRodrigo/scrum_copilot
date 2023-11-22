@@ -5,9 +5,9 @@
   <h2 class="title">Gerenciamento de Etapas</h2>
   <div class="input-box">
     <input type="text" name="search" [(ngModel)]="searchText" (ngModelChange)="applyFilter()"
-        placeholder="Buscar metas">
+      placeholder="Buscar metas">
     <span class="icon_input"><i class="fa-solid fa-magnifying-glass"></i></span>
-</div>
+  </div>
 
   <div class="button_meta">
     <button (click)="openPopup()">Criar Etapa</button>
@@ -34,7 +34,8 @@
             </div>
             <div class="form-group">
               <label for="dataInicio">Responsável:</label>
-              <select id="selectColaboradores" formControlName="identificador_responsavel" [(ngModel)]='identificador_usuario'>
+              <select id="selectColaboradores" formControlName="identificador_responsavel"
+                [(ngModel)]='identificador_usuario'>
                 <option *ngFor="let colaborador of colaboradores" [value]="colaborador.identificador_usuario">
                   {{colaborador.nome_completo}}
                 </option>
@@ -82,11 +83,11 @@
         <td>{{ encontrarNomeResponsavel(meta.identificador_responsavel) }}</td>
         <td>
           <div class="progress-container">
-              <div class="progress-bar" [ngStyle]="getProgressBarStyle(meta.progresso)">
-                  {{ meta.progresso || 0}}%
-              </div>
+            <div class="progress-bar" [ngStyle]="getProgressBarStyle(meta.progresso)">
+              {{ meta.progresso || 0}}%
+            </div>
           </div>
-      </td>
+        </td>
         <td>{{ meta.impedimentos }}</td>
         <td>{{ meta.status }}</td>
         <td>
@@ -112,6 +113,7 @@
       <h2 class="title_reports">Reports - Relatórios</h2>
       <textarea #textareaElement (input)="onInput(event)" required>
       </textarea>
+      <button class="button_textarea" (click)="limparTextarea()">Limpar</button>
     </div>
   </div>
 

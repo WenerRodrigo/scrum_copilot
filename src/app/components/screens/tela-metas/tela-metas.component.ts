@@ -27,6 +27,7 @@ export class TelaMetasComponent implements OnInit {
   textareaElement: HTMLInputElement | any;
   event: HTMLTextAreaElement | any;
   aluno: boolean;
+  textoNoTextarea: string = '';
 
 
   // textArea
@@ -121,7 +122,10 @@ export class TelaMetasComponent implements OnInit {
   // textArea
   @HostListener('input', ['$event.target'])
   onInput(_textarea: HTMLTextAreaElement): void {
-    this.adjustTextareaHeight();
+    if (_textarea && _textarea.value) {
+      this.textoNoTextarea = _textarea.value;
+      this.adjustTextareaHeight();
+    }
   }
 
   // textArea
@@ -131,6 +135,15 @@ export class TelaMetasComponent implements OnInit {
     textareaElement.style.height = '65px';
     textareaElement.style.height = `${textareaElement.scrollHeight}px`;
   }
+
+  limparTextarea(): void {
+    // Limpa o conteúdo do textarea
+    this.textareaElement.nativeElement.value = '';
+    this.textoNoTextarea = '';
+    this.adjustTextareaHeight();
+  }
+
+
 
 
   submitForm() {
