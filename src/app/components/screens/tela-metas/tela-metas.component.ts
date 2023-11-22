@@ -44,7 +44,7 @@ export class TelaMetasComponent implements OnInit {
       data_conclusao_prevista: [''],
       progresso: [''],
       impedimentos: [''],
-      
+
     });
 
     this.identificador_usuario = localStorage.getItem('identificador_usuario') || '';
@@ -62,6 +62,7 @@ export class TelaMetasComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getEtapas(this.identificador_meta, this.identificador_usuario, this.supervisor).subscribe({
       next: (response) => {
+        console.log(response.dados_extras);
         if (response.response === 200) {
           //this.metaSalva = true;
           response.dados_extras.forEach((meta: any) => {
@@ -84,12 +85,12 @@ export class TelaMetasComponent implements OnInit {
         console.error('Erro ao cadastrar:', error);
       }
     });
-    
+
     this.authService.getColaboradores().subscribe({
       next: (response) => {
         if (response.response === 200) {
           //this.metaSalva = true;
-            this.colaboradores.push({identificador_usuario: "00000000-0000-0000-0000-000000000000", nome_completo: "NENHUM"})
+          this.colaboradores.push({ identificador_usuario: "00000000-0000-0000-0000-000000000000", nome_completo: "NENHUM" })
           response.dados_extras.forEach((colaborador: any) => {
             this.colaboradores.push(colaborador)
           });
@@ -110,7 +111,7 @@ export class TelaMetasComponent implements OnInit {
       }
     });
   }
-  
+
 
   // textArea
   ngAfterViewInit(): void {
@@ -122,7 +123,7 @@ export class TelaMetasComponent implements OnInit {
   onInput(_textarea: HTMLTextAreaElement): void {
     this.adjustTextareaHeight();
   }
-   
+
   // textArea
   adjustTextareaHeight(): void {
     const textareaElement = this.textareaElement.nativeElement as HTMLTextAreaElement;
@@ -153,7 +154,7 @@ export class TelaMetasComponent implements OnInit {
             this.closePopup();
             window.location.reload();
 
-          } 
+          }
           else {
             console.log(response);
             alert(response.mensagem);
@@ -175,7 +176,7 @@ export class TelaMetasComponent implements OnInit {
 
 
             this.metas = [...this.metas, response.novaEtapa];
-          } 
+          }
           else {
             console.log(response);
             alert(response.mensagem);

@@ -44,6 +44,7 @@
 <table class="metas-table" *ngIf="metaSalva">
     <thead>
         <tr>
+            <th>ID</th>
             <th>Visualizar Meta</th>
             <th>Meta</th>
             <th>Descriçao</th>
@@ -56,7 +57,8 @@
     </thead>
     <tbody>
         <tr *ngFor="let meta of metas; let i = index">
-            <td style="display: none;">{{ meta.identificador_meta }}</td>
+            <!-- <td style="display: none;">{{ meta.identificador_meta }}</td> -->
+            <td>{{ meta.id_meta }}</td>
             <td>
                 <div class="acoes-button">
                     <button class="button-visualizar" (click)="visualizarEtapa(meta.identificador_meta)">

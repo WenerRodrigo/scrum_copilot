@@ -243,6 +243,7 @@ export class TelaPrincipalComponent implements OnInit {
   }
 }
 export class Meta {
+  id_meta: number | undefined;
   titulo_meta: string = '';
   descricao: string = '';
   data_inicio: Date = new Date();
