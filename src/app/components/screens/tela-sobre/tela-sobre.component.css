@@ -1,7 +1,3 @@
-.box_container {
-   
-}
-
 .custom_toolbar {
     display: flex;
     justify-content: space-between;
@@ -94,10 +90,6 @@
     margin: 10px;
 }
 
-/* .team-gallery:hover {
-    transform: scale(1);
-    transition: 0.5s;
-} */
 
 .subtitle_video {
     font-size: 35px;

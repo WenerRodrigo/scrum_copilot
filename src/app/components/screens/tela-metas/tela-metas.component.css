@@ -43,7 +43,6 @@
     position: absolute;
     left: 46%;
     top: 10;
-    /* margin-right: 20%; */
     cursor: pointer;
 }
 
@@ -292,17 +291,6 @@ label {
     cursor: pointer;
 }
 
-/* .button-save {
-    width: 20%;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    background-color: #10be10;
-    color: #fff;
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
-    cursor: pointer;
-} */
 
 .button-remove {
     width: 45%;
@@ -317,19 +305,6 @@ label {
 }
 
 
-/* .button-visualizar {
-    width: 30%;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    background-color: #cf650e;
-    color: #fff;
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
-    cursor: pointer;
-
-} */
-
 @media (min-width: 768px) {
 
     .acoes-button {
@@ -339,14 +314,10 @@ label {
 }
 
 
-
-
-
 .button_meta {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin-right: 50%; */
     margin-bottom: 10px;
 }
 

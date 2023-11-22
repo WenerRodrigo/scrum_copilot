@@ -72,11 +72,6 @@
     </thead>
     <tbody>
       <tr *ngFor="let meta of metas; let i = index;">
-
-        <!-- <pre>
-          {{ metas | json}}
-        </pre>  -->
-        <!-- <td style="display: none;">{{ meta.identificador_etapa }}</td> -->
         <td>{{ meta.titulo_etapa }}</td>
         <td>{{ meta.descricao }}</td>
         <td>{{ meta.data_conclusao_prevista | date: 'dd/MM/yyyy' }}</td>

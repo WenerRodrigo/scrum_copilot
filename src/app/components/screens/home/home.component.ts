@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, this.ngModelValidator]]
-      // pass: this.password
     })
   }
 

@@ -3,7 +3,6 @@ header {
     align-items: center;
     justify-content: center;
     margin-top: 90px;
-    /* position: relative; */
     margin-bottom: 80px;
 }
 
@@ -67,11 +66,6 @@ input:focus {
     font-size: 20px;
     color: #ccc;
     cursor: pointer;
-    /* right: 15px;
-    margin-top: 68px;
-    margin-right: 500px;
-    top: 100px; */
-
 }
 
 button {

@@ -65,7 +65,6 @@ export class TelaMetasComponent implements OnInit {
       next: (response) => {
         console.log(response.dados_extras);
         if (response.response === 200) {
-          //this.metaSalva = true;
           response.dados_extras.forEach((meta: any) => {
             meta.data_conclusao_prevista = new Date(meta.data_conclusao_prevista).toISOString().split('T')[0]
             this.originalMetas.push(meta)
@@ -90,7 +89,6 @@ export class TelaMetasComponent implements OnInit {
     this.authService.getColaboradores().subscribe({
       next: (response) => {
         if (response.response === 200) {
-          //this.metaSalva = true;
           this.colaboradores.push({ identificador_usuario: "00000000-0000-0000-0000-000000000000", nome_completo: "NENHUM" })
           response.dados_extras.forEach((colaborador: any) => {
             this.colaboradores.push(colaborador)
@@ -137,7 +135,6 @@ export class TelaMetasComponent implements OnInit {
   }
 
   limparTextarea(): void {
-    // Limpa o conteúdo do textarea
     this.textareaElement.nativeElement.value = '';
     this.textoNoTextarea = '';
     this.adjustTextareaHeight();
@@ -206,10 +203,6 @@ export class TelaMetasComponent implements OnInit {
 
   openPopup() {
     this.isPopupVisible = true;
-
-    // if(this.metaEmEdicao === null){
-    //   this.meuFormulario.value.identificador_responsavel = this.identificador_usuario;
-    // }
   }
 
   closePopup() {
@@ -262,8 +255,6 @@ export class TelaMetasComponent implements OnInit {
       this.authService.deleteEtapa(index).subscribe({
         next: (response) => {
           if (response.response === 200) {
-            //alert('Deseja realmente deletar a meta?');
-            //window.location.reload();
             this.metas = this.metas.filter(meta => meta.identificador_etapa !== index);
           }
           else {

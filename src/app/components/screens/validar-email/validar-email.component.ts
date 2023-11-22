@@ -46,15 +46,4 @@ export class ValidarEmailComponent implements OnInit {
     }
     
   }
-
-  //validarEmail(email: string): boolean {
-  // const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-  //return emailPattern.test(email);
-  //}
-
-  //setFocusOnEmailField() {
-  //setTimeout(() => {
-  // this.elementRef.nativeElement.querySelector('#email').focus();
-  //}, 0);
-  //}
 }
