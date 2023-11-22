@@ -1,27 +1,88 @@
-# Copilot
+# Scrum Copilot
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
 
-## Development server
+# Descrição
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este projeto é uma aplicação Angular que permite o gerenciamento completo de uma lista de tarefas, incluindo funcionalidades de CRUD (Create, Read, Update, Delete), telas de dashboard para monitoramento do progresso, autenticação com validações, reset de senha via e-mail, e integração com uma API em C# para manipulação de dados no banco de dados SQL Server. Além disso, há a inclusão de um bot para geração de relatórios sobre o status das etapas.
 
-## Code scaffolding
+# Funcionalidades
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# 1. CRUD
 
-## Build
+# Tarefas: Permite criar, visualizar, editar e excluir tarefas.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Metas e Etapas: Possibilidade de associar metas a tarefas e dividir em etapas.
 
-## Running unit tests
+# 2. Dashboard
+# Visão Geral: 
+Exibe o status geral das tarefas, destacando as concluídas, em atraso, em andamento e em execução.
+Gráficos Interativos: Gráficos visuais que facilitam a compreensão do progresso.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# 3. Autenticação e Segurança
+# Cadastro de Usuário: 
+Formulário de registro com validações para garantir dados consistentes.
+Login e Logout: Autenticação segura para acessar as funcionalidades.
 
-## Running end-to-end tests
+# 4. Recuperação de Senha
+# Reset de Senha via E-mail: 
+Funcionalidade para redefinir a senha do usuário por meio de um link enviado por e-mail.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# 5. Relatórios
+# Bot de Relatórios: 
+Integração com um bot para gerar relatórios sobre o status das etapas, fornecendo insights valiosos.
+Pré-requisitos
 
-## Further help
+Node.js e npm: Instalados para execução do ambiente Angular.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Angular CLI: Necessário para gerenciar a aplicação Angular.
+
+Banco de Dados SQL Server: Configurado com as tabelas necessárias para armazenar dados.
+
+Visual Studio ou IDE equivalente: Para executar a API em C#.
+
+
+# Configuração
+
+# Clone o repositório:
+git clone https://github.com/seu-usuario/seu-projeto.git
+cd seu-projeto
+
+# Instale as dependências:
+npm install ou npm i
+
+# Configuração da API:
+Abra o projeto da API no Visual Studio.
+Configure a conexão com o banco de dados no arquivo appsettings.json.
+Execute a API.
+
+# Executando o Projeto
+Utilize o seguinte comando para iniciar a aplicação Angular:
+ng serve ou npm start
+
+
+# Contribuindo
+Contribuições são bem-vindas. Antes de realizar alterações significativas, abra uma issue para discussão.
+
+
+# Preview
+
+![Alt text](TelaInicio.png)
+
+![Alt text](TelaValidarEmail.png)
+
+![Alt text](TelaCadastro.png)
+
+![Alt text](TelaDashboard.png)
+
+![Alt text](TelaSobre.png)
+
+![Alt text](TelaMetas.png)
+
+![Alt text](TelaEtapas.png)
+
+![Alt text](TelaEtapasReport.png)
+
+![Alt text](TelaEtapaFiltro.png)
+
+![Alt text](TelaPopup.png)
+
