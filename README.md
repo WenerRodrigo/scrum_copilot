@@ -65,24 +65,48 @@ Contribuições são bem-vindas. Antes de realizar alterações significativas, 
 
 
 # Preview
+![TelaInicio](https://github.com/WenerRodrigo/scrum_copilot/assets/106413124/c2785bc8-0942-4783-ad8e-fb5e81fdf8f6)
 
-![Alt text](TelaInicio.png)
+![TelaCadastro](https://github.com/WenerRodrigo/scrum_copilot/assets/106413124/87c46f95-6633-4780-a85a-2c18b59d9bde)
 
-![Alt text](TelaValidarEmail.png)
+![TelaValidarEmail](https://github.com/WenerRodrigo/scrum_copilot/assets/106413124/ad6a9618-12ae-4de4-93a5-c2cc4205d595)
 
-![Alt text](TelaCadastro.png)
+![TelaDashboard](https://github.com/WenerRodrigo/scrum_copilot/assets/106413124/979c3475-bbd6-48fc-ad3c-f3d53fc059aa)
 
-![Alt text](TelaDashboard.png)
+![TelaSobre](https://github.com/WenerRodrigo/scrum_copilot/assets/106413124/bc063c98-ffca-4215-9c84-dc847ed30dd0)
 
-![Alt text](TelaSobre.png)
+![TelaMetas](https://github.com/WenerRodrigo/scrum_copilot/assets/106413124/e6bcb0ff-acc7-4757-95d1-b217abb92a23)
 
-![Alt text](TelaMetas.png)
+![TelaEtapas](https://github.com/WenerRodrigo/scrum_copilot/assets/106413124/3eb94a18-73fc-4170-a79a-c5dd0ced40fc)
 
-![Alt text](TelaEtapas.png)
+![TelaEtapaFiltro](https://github.com/WenerRodrigo/scrum_copilot/assets/106413124/1b882eca-267f-41c3-aba0-aaddde72cf89)
 
-![Alt text](TelaEtapasReport.png)
+![TelaEtapasReport](https://github.com/WenerRodrigo/scrum_copilot/assets/106413124/15559fff-d39e-46bb-8e93-03f76cbe52ad)
 
-![Alt text](TelaEtapaFiltro.png)
+![TelaPopup](https://github.com/WenerRodrigo/scrum_copilot/assets/106413124/8f689658-a9c7-4a34-929b-ed481954ea28)
 
-![Alt text](TelaPopup.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
